@@ -71,7 +71,7 @@ export const Login = () => {
             variant="contained"
             color="primary"
             className={styles.submit}>
-            Sign in
+            Вход
           </Button>
         </Grid>
       </form>
