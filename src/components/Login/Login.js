@@ -39,9 +39,11 @@ export const Login = () => {
 
   return (
     <Container component="main" className={styles.loginBox} maxWidth="xs">
-      <Typography variant="h5" className={styles.tittle}>Вход / Регистрация </Typography>
+      <Typography variant="h5" className={styles.tittle}>
+        Вход / Регистрация{' '}
+      </Typography>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <TabContext value={value}>
+        <TabContext value={role}>
           <Box>
             <TabList
               className={styles.tabs}
