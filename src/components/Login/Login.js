@@ -56,7 +56,7 @@ export const Login = () => {
         <Grid container>
           <TextField
             className={styles.input}
-            label="Email - адрес"
+            label="E-mail адрес"
             id="email"
             variant="outlined"
             type="email"

@@ -1,7 +1,5 @@
 .root {
   display: flex;
-  height: 100%;
   font-family: Inter;
   align-items: center;
-
 }
