@@ -1,19 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Typography, Container, Tabs, Tab, Box } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { Button, Grid, Typography, Container, Tab, Box } from '@mui/material';
+import { TabContext, TabList } from '@mui/lab';
 import TextField from '@mui/material/TextField';
 import { useNotification } from '../../hooks/useNotification';
 import { useAuth } from '../../hooks/useAuth';
+import * as api from '../../api';
 import styles from './Login.module.css';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { setAuth, isAuth } = useAuth();
+  const { isAuth } = useAuth();
   const emailRef = useRef(null);
-  const [value, setValue] = useState('1');
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const [role, setRole] = useState('1');
+  const notification = useNotification();
+
+  const handleRoleChange = (event, value) => {
+    setRole(value);
   };
 
   useEffect(() => {
@@ -23,7 +26,15 @@ export const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    // signin logic
+    try {
+      const data = {
+        email: emailRef.current.value,
+        role
+      };
+      await api.signin(data);
+    } catch (err) {
+      notification.warning(err.message);
+    }
   };
 
   return (
@@ -34,7 +45,7 @@ export const Login = () => {
           <Box>
             <TabList
               className={styles.tabs}
-              onChange={handleChange}
+              onChange={handleRoleChange}
               aria-label="lab API tabs example">
               <Tab label="Специалист" value="1" />
               <Tab label="Заказчик" value="2" />
