@@ -12,7 +12,6 @@ export const Login = () => {
   const { setAuth, isAuth } = useAuth();
   const emailRef = useRef(null);
   const [value, setValue] = useState('1');
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -29,13 +28,16 @@ export const Login = () => {
 
   return (
     <Container component="main" className={styles.loginBox} maxWidth="xs">
-      <Typography variant="h5">Signup / Login</Typography>
+      <Typography variant="h5">Войти</Typography>
       <form className={styles.form} onSubmit={handleSubmit}>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Item One" value="1" />
-              <Tab label="Item Two" value="2" />
+          <Box>
+            <TabList
+              className={styles.tabs}
+              onChange={handleChange}
+              aria-label="lab API tabs example">
+              <Tab label="Специалист" value="1" />
+              <Tab label="Заказчик" value="2" />
             </TabList>
           </Box>
         </TabContext>

@@ -15,3 +15,6 @@
   justify-content: center;
   height: 100%;
 }
+div[class*='MuiTabs-flexContainer'] {
+  justify-content: center;
+}
