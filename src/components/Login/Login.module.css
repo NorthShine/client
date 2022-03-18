@@ -1,20 +1,36 @@
 .form {
   width: 100%;
   margin-top: 10px;
+  padding: 33px;
 }
 .submit {
   margin: 10px;
 }
 .input {
-  margin: 10px;
+  margin: 30px 10px;
 }
 .loginBox {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border: 0.5px solid rgb(243, 243, 243);
+  border-radius: 15px;  
 }
 div[class*='MuiTabs-flexContainer'] {
   justify-content: center;
+}
+.tittle {
+  padding-top: 40px;
+  
+}
+@media (max-width: 900px) {
+ 
+  .loginBox {
+    box-shadow: none;
+    border: none;
+  }
 }
