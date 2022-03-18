@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Typography, Container, Tab, Box } from '@mui/material';
+import { Button, Grid, Typography, Container, Tab, Box, TextField } from '@mui/material';
 import { TabContext, TabList } from '@mui/lab';
-import TextField from '@mui/material/TextField';
 import { useNotification } from '../../hooks/useNotification';
 import { useAuth } from '../../hooks/useAuth';
 import * as api from '../../api';
@@ -12,7 +11,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
   const emailRef = useRef(null);
-  const [role, setRole] = useState('1');
+  const [role, setRole] = useState('employee');
   const notification = useNotification();
 
   const handleRoleChange = (event, value) => {
@@ -39,8 +38,8 @@ export const Login = () => {
 
   return (
     <Container component="main" className={styles.loginBox} maxWidth="xs">
-      <Typography variant="h5" className={styles.tittle}>
-        Вход / Регистрация{' '}
+      <Typography variant="h5" className={styles.title}>
+        Вход / Регистрация
       </Typography>
       <form className={styles.form} onSubmit={handleSubmit}>
         <TabContext value={role}>
@@ -49,8 +48,8 @@ export const Login = () => {
               className={styles.tabs}
               onChange={handleRoleChange}
               aria-label="lab API tabs example">
-              <Tab label="Специалист" value="1" />
-              <Tab label="Заказчик" value="2" />
+              <Tab label="Специалист" value="employee" />
+              <Tab label="Заказчик" value="employer" />
             </TabList>
           </Box>
         </TabContext>

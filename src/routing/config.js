@@ -4,6 +4,7 @@ import { AppLayout } from '../components/AppLayout/AppLayout';
 import { MainLayout } from '../components/MainLayout/MainLayout';
 import { Login } from '../components/Login/Login';
 import { Outlet } from 'react-router-dom';
+import { OpenForm } from '../components/OpenForm/OpenForm';
 
 export const routes = [
   {
@@ -22,6 +23,10 @@ export const routes = [
           {
             path: '/login',
             element: <Login />
+          },
+          {
+            path: '/open-form',
+            element: <OpenForm />
           },
           {
             path: '/',
