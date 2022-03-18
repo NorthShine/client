@@ -68,7 +68,7 @@ export const OpenForm = () => {
   };
 
   return (
-    <Container component="main" className={styles.openForm} maxWidth="xs">
+    <Container component="main" className={styles.openForm} maxWidth="md">
       <Typography variant="h5" className={styles.title}>
         Вход / Регистрация
       </Typography>
@@ -88,7 +88,7 @@ export const OpenForm = () => {
               />
               <FormControl fullWidth>
                 <InputLabel id="select-label">Уровень</InputLabel>
-                <Select
+                <Select className={styles.select__lvl}
                   labelId="level"
                   id={String(item.id)}
                   name={String(item.id)}
