@@ -55,6 +55,7 @@ export const SkillTokenEditor = () => {
               id={item.id}
               variant="outlined"
               type="text"
+              value={item.name}
               onChange={handleCompetencyNameChange}
               required
               fullWidth
