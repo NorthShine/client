@@ -7,16 +7,20 @@ import {
   IconButton,
   Accordion,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails,
+  Button,
+  useMediaQuery
 } from '@mui/material';
-import { Edit, CardTravel, ExpandMore } from '@mui/icons-material';
+import { Edit, ExpandMore } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
+  const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
+
   return (
     <Container className={styles.root}>
       <Container className={styles.image_wrapper}>
@@ -42,10 +46,9 @@ export const Profile = () => {
           <Typography className={styles.skill__token} variant="h6">
             Skilltokens:
           </Typography>
-          {user.skillTokens.map(token => {
-            console.log(token.competences);
-            return (
-              <Accordion>
+          {user.skillTokens.map(
+            token => (
+              <Accordion key={token.id}>
                 <AccordionSummary
                   expandIcon={<ExpandMore />}
                   aria-controls="panel1a-content"
@@ -61,10 +64,18 @@ export const Profile = () => {
                         </Typography>
                       );
                     })}
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      startIcon={<Edit />}
+                      fullWidth={isMobile}
+                      onClick={() => navigate(`/token/${token.id}`)}>
+                      Редактировать
+                    </Button>
                   </Stack>
                 </AccordionDetails>
               </Accordion>
-            );
+            )
             // <Card className={styles.selected__card} key={token.id} variant="outlined">
             //   <Stack className={styles.selected__icon} direction="row" spacing={5}>
             //     <CardTravel />
@@ -78,7 +89,7 @@ export const Profile = () => {
             //     </Tooltip>
             //   </Stack>
             // </Card>
-          })}
+          )}
         </Container>
       </Container>
     </Container>
