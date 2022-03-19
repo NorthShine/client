@@ -7,3 +7,8 @@ export const createCompetence = () => ({
     name: 'Junior'
   }
 });
+
+export const createUserLink = () => ({
+  id: uuid(),
+  value: ''
+});

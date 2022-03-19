@@ -6,6 +6,7 @@ import { Login } from '../components/Login/Login';
 import { Outlet } from 'react-router-dom';
 import { OpenForm } from '../components/OpenForm/OpenForm';
 import { Profile } from '../components/Profile/Profile';
+import { ProfileEditor } from '../components/ProfileEditor/ProfileEditor';
 import { SkillToken } from '../components/SkillToken/SkillToken';
 
 export const routes = [
@@ -39,6 +40,10 @@ export const routes = [
               {
                 path: '/profile',
                 element: <Profile />
+              },
+              {
+                path: '/profile/edit',
+                element: <ProfileEditor />
               }
             ]
           }

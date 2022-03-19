@@ -28,7 +28,7 @@ export const SkillToken = () => {
 
   useEffect(() => {
     const userSkillToken = user.skillTokens.find(token => token.id === tokenId);
-    dispatch(setSkillToken(userSkillToken));
+    if (userSkillToken) dispatch(setSkillToken(userSkillToken));
   }, []);
 
   return (

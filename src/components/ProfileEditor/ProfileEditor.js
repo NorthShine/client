@@ -1,31 +1,43 @@
-import { useRef } from 'react';
-import { Button, Grid, Container, TextField, useMediaQuery } from '@mui/material';
+import {
+  Button,
+  Grid,
+  Container,
+  TextField,
+  useMediaQuery,
+  Tooltip,
+  IconButton,
+  Typography
+} from '@mui/material';
+import { Delete } from '@mui/icons-material';
 import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
-import styles from './OpenForm.module.css';
-import { useSelector } from 'react-redux';
+import styles from './ProfileEditor.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserLink, addUserLink, removeUserLink } from '../../store/reducers/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const ProfileEditor = () => {
-  const emailRef = useRef(null);
-  const notification = useNotification();
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery('(max-width:600px)');
-  const usernameRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const { competences } = useSelector(state => state.skillToken.token);
+  const navigate = useNavigate();
+  const user = useSelector(state => state.user.user);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const data = {
-        username: usernameRef.current.value,
-        email: emailRef.current.value,
-        role: 'employee',
-        competences
-      };
-      await api.register(data);
-    } catch (err) {
-      notification.warning(err.message);
-    }
+    navigate('/profile');
+  };
+
+  const handleUpdateLink = event => {
+    const { id, value } = event.target;
+    dispatch(updateUserLink({ id, value }));
+  };
+
+  const handleRemoveLink = id => {
+    dispatch(removeUserLink({ id }));
+  };
+
+  const handleAddLink = () => {
+    dispatch(addUserLink());
   };
 
   return (
@@ -38,7 +50,7 @@ export const ProfileEditor = () => {
             id="username"
             variant="outlined"
             type="text"
-            inputRef={usernameRef}
+            value={user.name}
             required
             fullWidth
             autoFocus
@@ -49,61 +61,55 @@ export const ProfileEditor = () => {
             id="description"
             variant="outlined"
             type="text"
-            inputRef={descriptionRef}
+            value={user.description}
             required
             fullWidth
             autoFocus
+            multiline
           />
+          <Typography variant="h6">Ссылки</Typography>
           {user.links.map(item => (
-            <Container key={item} className={styles.competences}>
+            <Container key={item.id} className={styles.competences}>
               <TextField
                 className={styles.input}
                 label="Название компетенции"
-                id={item}
+                id={item.id}
                 variant="outlined"
                 type="text"
-                value={item}
-                onChange={handleLinkChange}
+                value={item.value}
+                onChange={handleUpdateLink}
                 required
                 fullWidth
                 autoFocus
               />
-              <Container disableGutters className={styles.selectWrapper}>
-                <FormControl fullWidth>
-                  <InputLabel id="select-label">Уровень</InputLabel>
-                  <Select
-                    className={styles.select}
-                    labelId="level"
-                    id={item.id}
-                    name={item.id}
-                    value={item.level.name}
-                    label="Уровень"
-                    spacing={2}
-                    onChange={handleLevelSelect}>
-                    <MenuItem value="Junior">Junior</MenuItem>
-                    <MenuItem value="Middle">Middle</MenuItem>
-                    <MenuItem value="Senior">Senior</MenuItem>
-                  </Select>
-                </FormControl>
-              </Container>
               {isMobile ? (
                 <Button
                   color="secondary"
                   variant="outlined"
                   startIcon={<Delete />}
                   fullWidth
-                  onClick={() => handleRemoveCompetence(item.id)}>
+                  onClick={() => handleRemoveLink(item.id)}>
                   Удалить
                 </Button>
               ) : (
                 <Tooltip title="Удалить">
-                  <IconButton onClick={() => handleRemoveCompetence(item.id)}>
+                  <IconButton onClick={() => handleRemoveLink(item.id)}>
                     <Delete />
                   </IconButton>
                 </Tooltip>
               )}
             </Container>
           ))}
+          <Grid container>
+            <Button
+              variant="outlined"
+              color="primary"
+              fullWidth={isMobile}
+              className={styles.button}
+              onClick={handleAddLink}>
+              Добавить ссылку
+            </Button>
+          </Grid>
         </Grid>
         <Grid container>
           <Button
