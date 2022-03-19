@@ -1,3 +1,4 @@
+
 .root {
   display: flex;
   justify-content: center;
@@ -9,6 +10,9 @@
   padding: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
 
 .image_wrapper > img {
@@ -20,7 +24,19 @@
 .selected__speciality {
   padding: 10px 15px;
   width: 100%;
+  margin: 0 !important;
 }
 .selected__card {
   width: 100%;
+}
+.selected__icon {
+  align-items: center;
+  padding-left: 15px;
+}
+.skill__token {
+  padding-bottom: 5px;
+  color: rgb(158, 157, 157);
+}
+.card__wrapper {
+  justify-content: flex-start;
 }
