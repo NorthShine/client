@@ -2,7 +2,12 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { createCompetence } from '../../../utils';
 
 const initialState = {
-  competences: [createCompetence()]
+  token: {
+    name: 'Designer',
+    id: '0',
+    tags: ['HTML', 'CSS', 'Python'],
+    competences: [createCompetence()]
+  }
 };
 
 export const setSkillToken = createAction('skillToken/setSkillToken');
@@ -13,21 +18,21 @@ export const setCompetenceLevel = createAction('skillToken/setCompetenceName');
 
 export const skillTokenReducer = createReducer(initialState, builder => {
   builder.addCase(setSkillToken, (state, action) => {
-    state.competences.push(action.payload);
+    state.token = action.payload;
   });
   builder.addCase(addCompetence, state => {
-    state.competences.push(createCompetence());
+    state.token.competences.push(createCompetence());
   });
   builder.addCase(removeCompetence, (state, action) => {
     const { id } = action.payload;
-    if (state.competences.length > 1) {
-      const newCompetences = state.competences.filter(item => item.id !== id);
-      return { competences: [...newCompetences] };
+    if (state.token.competences.length > 1) {
+      const newCompetences = state.token.competences.filter(item => item.id !== id);
+      state.token.competences = [...newCompetences];
     }
   });
   builder.addCase(changeCompetenceName, (state, action) => {
     const { id, value } = action.payload;
-    state.competences = state.competences.map(item => {
+    state.token.competences = state.token.competences.map(item => {
       if (item.id === id) {
         item.name = value;
       }
@@ -36,7 +41,7 @@ export const skillTokenReducer = createReducer(initialState, builder => {
   });
   builder.addCase(setCompetenceLevel, (state, action) => {
     const { name, value } = action.payload;
-    state.competences = state.competences.map(item => {
+    state.token.competences = state.token.competences.map(item => {
       if (item.id === name) {
         item.level.name = value;
       }

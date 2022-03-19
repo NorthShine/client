@@ -9,7 +9,8 @@ const initialState = {
     skillTokens: [
       {
         name: 'Designer',
-        id: 0,
+        id: '0',
+        tags: ['HTML', 'CSS', 'Python'],
         competences: [
           {
             name: 'HTML',
@@ -27,7 +28,8 @@ const initialState = {
       },
       {
         name: 'Writer',
-        id: 1,
+        id: '1',
+        tags: ['HTML', 'CSS', 'Python'],
         competences: [
           {
             name: 'HTML',
@@ -46,7 +48,8 @@ const initialState = {
       ,
       {
         name: 'Developer',
-        id: 2,
+        id: '2',
+        tags: ['HTML', 'CSS', 'Python'],
         competences: [
           {
             name: 'HTML',

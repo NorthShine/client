@@ -13,7 +13,7 @@ export const OpenForm = () => {
   const notification = useNotification();
   const isMobile = useMediaQuery('(max-width:600px)');
   const usernameRef = useRef(null);
-  const competences = useSelector(state => state.skillToken);
+  const { competences } = useSelector(state => state.skillToken.token);
 
   const handleSubmit = async e => {
     e.preventDefault();

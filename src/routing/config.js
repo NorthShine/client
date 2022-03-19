@@ -6,6 +6,7 @@ import { Login } from '../components/Login/Login';
 import { Outlet } from 'react-router-dom';
 import { OpenForm } from '../components/OpenForm/OpenForm';
 import { Profile } from '../components/Profile/Profile';
+import { SkillToken } from '../components/SkillToken/SkillToken';
 
 export const routes = [
   {
@@ -34,7 +35,7 @@ export const routes = [
             element: <AppLayout />,
             children: [
               { path: '/', element: <Home /> },
-              // { path: '/token/:tokenId', element: <SkillToken /> },
+              { path: '/token/:tokenId', element: <SkillToken /> },
               {
                 path: '/profile',
                 element: <Profile />

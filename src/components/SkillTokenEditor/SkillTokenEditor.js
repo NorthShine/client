@@ -23,15 +23,17 @@ import styles from './SkillTokenEditor.module.css';
 
 export const SkillTokenEditor = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const competences = useSelector(state => state.skillToken.competences);
+  const { competences } = useSelector(state => state.skillToken.token);
   const dispatch = useDispatch();
 
   const handleCompetencyNameChange = event => {
-    dispatch(changeCompetenceName({ ...event.target }));
+    const { id, value } = event.target;
+    dispatch(changeCompetenceName({ id, value }));
   };
 
   const handleLevelSelect = event => {
-    dispatch(setCompetenceLevel({ ...event.target }));
+    const { name, value } = event.target;
+    dispatch(setCompetenceLevel({ name, value }));
   };
 
   const handleAddCompetence = () => {
