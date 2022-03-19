@@ -66,8 +66,9 @@ export const SkillTokenEditor = () => {
                   labelId="level"
                   id={item.id}
                   name={item.id}
-                  value={item.level.name}
+                  value={item.level}
                   label="Уровень"
+                  spacing={2}
                   onChange={handleLevelSelect}>
                   <MenuItem value="Junior">Junior</MenuItem>
                   <MenuItem value="Middle">Middle</MenuItem>
