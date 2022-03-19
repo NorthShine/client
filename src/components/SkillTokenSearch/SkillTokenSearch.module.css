@@ -5,11 +5,12 @@
 .input {
   padding-right: 10px;
 }
-.openForm {
+.search {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
 .title {
   padding-top: 40px;
@@ -34,6 +35,19 @@
 
 .userinfo_wrapper {
   padding-top: 20px;
+}
+
+.list_item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.icon {
+  fill: #8a87f6;
+}
+
+.skills_wrapper {
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
