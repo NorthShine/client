@@ -35,24 +35,28 @@ export const Profile = () => {
         <Typography variant="h5">{user.name}</Typography>
       </Container>
       <Container className={styles.image_wrapper}>
-        <Container className={styles.aboutme__wrapper}>
+        <Typography sx={{ color: 'gray' }} variant="h6">
+          Enthusiast, inspiration seeker
+        </Typography>
+      </Container>
+      <Container className={styles.image_wrapper}>
+        <Container sx={{ paddingBottom: '2rem' }}>
           <Typography className={styles.skill__token} variant="h6">
             О себе
           </Typography>
-          <Card className={styles.aboutme__card} variant="outlined">
-            <Tooltip title="Редактировать">
-              <IconButton className={styles.aboutme__editior} onClick={() => {}}>
-                <Edit />
-              </IconButton>
-            </Tooltip>
-          </Card>
+          <Typography variant="p" sx={{ marginBottom: '2rem' }}>
+            Highly organized and detail-oriented honors graduate from the University of Georgia
+            seeking an entry-level position as an accountant. Served as a peer tutor for courses
+            such as general accounting, budgeting and forecasting, and accounting principles and
+            legislation.
+          </Typography>
         </Container>
         <Container className={styles.card__wrapper}>
           <Typography className={styles.skill__token} variant="h6">
-            Skilltokens:
+            Скилл-токены:
           </Typography>
           {user.skillTokens.map(token => (
-            <Accordion className={ `${styles.min_height} ${styles.accord__style}` }  key={token.id}>
+            <Accordion className={`${styles.min_height} ${styles.accord__style}`} key={token.id}>
               <AccordionSummary
                 expandIcon={<ExpandMore />}
                 aria-controls="panel1a-content"
@@ -61,9 +65,9 @@ export const Profile = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <Stack direction="column" className={styles.list}>
-                  <List >
+                  <List>
                     {token.competences.map(item => (
-                      <ListItem  key={item.id} disablePadding>
+                      <ListItem key={item.id} disablePadding>
                         <ListItemButton>
                           <ListItemIcon>
                             <CheckCircle />
@@ -74,8 +78,9 @@ export const Profile = () => {
                     ))}
                   </List>
                   <Button
+                    className={styles.edit}
                     color="primary"
-                    variant="outlined"
+                    variant="contained"
                     startIcon={<Edit />}
                     fullWidth={isMobile}
                     onClick={() => navigate(`/token/${token.id}`)}>

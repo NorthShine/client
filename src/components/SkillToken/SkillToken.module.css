@@ -42,6 +42,10 @@
   padding-top: 20px;
 }
 
+.save {
+  margin: 10px;
+}
+
 @media (max-width: 600px) {
   .competences {
     flex-direction: column;

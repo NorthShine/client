@@ -49,7 +49,7 @@ export const Navbar = () => {
       link: '/profile'
     },
     {
-      name: 'Компетенции',
+      name: 'Заявки',
       icon: <FactCheck />,
       link: '/tokens'
     },

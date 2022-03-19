@@ -2,13 +2,15 @@ import axios from 'axios';
 import { setAccessTokenAction, setAuthAction } from '../store/reducers/auth/authReducer';
 
 export const API = axios.create({
-  baseURL: 'http://129.153.8.155:7777/admin/',
+  baseURL: 'http://129.153.8.155:7777/',
   withCredentials: true
 });
 
 export const fetchUsers = () => API.get('users');
-export const signin = data => API.post('api/token/', data);
-export const getUser = () => API.get('user');
+export const getUser = email => API.get(`profiles/${email}`);
+export const register = data => API.post('api/token/', data);
+export const setCompetencyLevel = data => API.post('/competency/level', data);
+export const addCompetency = data => API.post('/competency', data);
 export const refresh = () => API.get('api/token/refresh/');
 
 export const ApiInterceptors = store => {
