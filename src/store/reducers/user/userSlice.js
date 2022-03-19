@@ -12,20 +12,65 @@ const initialState = {
         name: 'Designer',
         id: '0',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [createCompetence(), createCompetence()]
+        competences: [
+          {
+            id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
+            name: 'Figma',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
+            name: 'CSS',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
       },
       {
         name: 'Writer',
         id: '1',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [createCompetence(), createCompetence()]
+        competences: [
+          {
+            id: '3b302f93-b7e6-4e33-8abe-f638a002a5c8',
+            name: 'HTML',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            id: '5b31d759-66b9-40e9-b1bf-879cc7e72910',
+            name: 'JavaScript',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
       },
       ,
       {
         name: 'Developer',
         id: '2',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [createCompetence(), createCompetence()]
+        competences: [
+          {
+            id: 'cdd94a90-cf95-473d-b326-616a4e0621ee',
+            name: 'Python',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
+            name: 'Java',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
       }
     ]
   },

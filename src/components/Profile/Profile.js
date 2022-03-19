@@ -9,9 +9,14 @@ import {
   AccordionSummary,
   AccordionDetails,
   Button,
-  useMediaQuery
+  useMediaQuery,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemButton,
+  ListItemText
 } from '@mui/material';
-import { Edit, ExpandMore } from '@mui/icons-material';
+import { Edit, ExpandMore, CheckCircle } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -46,50 +51,40 @@ export const Profile = () => {
           <Typography className={styles.skill__token} variant="h6">
             Skilltokens:
           </Typography>
-          {user.skillTokens.map(
-            token => (
-              <Accordion className={styles.accord__style} key={token.id}>
-                <AccordionSummary 
-                  expandIcon={<ExpandMore />}
-                  aria-controls="panel1a-content"
-                  id={token.id}>
-                  <Typography>{token.name}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Stack  direction="column">
-                    {token.competences.map(item => {
-                      return (
-                        <Typography variant="p" key={item.id}>
-                          {`HTML (${item.level.name})`}
-                        </Typography>
-                      );
-                    })}
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      startIcon={<Edit />}
-                      fullWidth={isMobile}
-                      onClick={() => navigate(`/token/${token.id}`)}>
-                      Редактировать
-                    </Button>
-                  </Stack>
-                </AccordionDetails>
-              </Accordion>
-            )
-            // <Card className={styles.selected__card} key={token.id} variant="outlined">
-            //   <Stack className={styles.selected__icon} direction="row" spacing={5}>
-            //     <CardTravel />
-            //     <Typography className={styles.selected__speciality} variant="h6">
-            //       {token.name}
-            //     </Typography>
-            //     <Tooltip title="Редактировать">
-            //       <IconButton onClick={() => navigate(`/token/${token.id}`)}>
-            //         <Edit />
-            //       </IconButton>
-            //     </Tooltip>
-            //   </Stack>
-            // </Card>
-          )}
+          {user.skillTokens.map(token => (
+            <Accordion className={styles.accord__style} key={token.id}>
+              <AccordionSummary
+                expandIcon={<ExpandMore />}
+                aria-controls="panel1a-content"
+                id={token.id}>
+                <Typography>{token.name}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Stack direction="column">
+                  <List>
+                    {token.competences.map(item => (
+                      <ListItem key={item.id} disablePadding>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <CheckCircle />
+                          </ListItemIcon>
+                          <ListItemText primary={`${item.name} (${item.level.name})`} />
+                        </ListItemButton>
+                      </ListItem>
+                    ))}
+                  </List>
+                  <Button
+                    color="primary"
+                    variant="outlined"
+                    startIcon={<Edit />}
+                    fullWidth={isMobile}
+                    onClick={() => navigate(`/token/${token.id}`)}>
+                    Редактировать
+                  </Button>
+                </Stack>
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </Container>
       </Container>
     </Container>
