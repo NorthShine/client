@@ -24,10 +24,10 @@ export const Profile = () => {
       </Container>
       <Container grid className={styles.image_wrapper}>
         {user.tokens.map(token => (
-          <Card key={token.id} variant="outlined">
+          <Card className={styles.selected__card} key={token.id} variant="outlined">
             <Stack direction="row" spacing={5}>
-              <Typography variant="h6">{token.name}</Typography>
-              <Tooltip title="Редактировать">
+              <Typography className={styles.selected__speciality} variant="h6">{token.name}</Typography>
+              <Tooltip  title="Редактировать">
                 <IconButton onClick={() => {}}>
                   <Edit />
                 </IconButton>
