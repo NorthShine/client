@@ -68,7 +68,7 @@ export const SkillTokenEditor = () => {
                   labelId="level"
                   id={item.id}
                   name={item.id}
-                  value={item.level}
+                  value={item.level.name}
                   label="Уровень"
                   spacing={2}
                   onChange={handleLevelSelect}>
