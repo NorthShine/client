@@ -1,7 +1,4 @@
 .root {
-  display: flex;
-  height: 100%;
+  display: block;
   font-family: Inter;
-  align-items: center;
-
 }
