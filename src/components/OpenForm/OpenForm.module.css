@@ -1,21 +1,15 @@
 .form {
   width: 100%;
   margin-top: 10px;
-  padding: 33px;
 }
 .submit {
   margin: 10px;
 }
-.add_competence {
+.button {
   margin: 10px;
 }
 .input {
-<<<<<<< HEAD
-  margin: 20px 10px;
-  width: 78%;
-=======
   padding-right: 10px;
->>>>>>> 911b2a4445f18683124cfaff45c49d81f74216e9
 }
 .openForm {
   display: flex;
@@ -26,15 +20,11 @@
 .title {
   padding-top: 40px;
 }
-<<<<<<< HEAD
-.select__lvl {
-=======
 .selectWrapper {
   width: auto;
   margin-right: 10px;
 }
 .select {
->>>>>>> 911b2a4445f18683124cfaff45c49d81f74216e9
   width: 100%;
 }
 .competences {
@@ -42,6 +32,14 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+}
+
+.userinfo_input {
+  margin: 10px;
+}
+
+.userinfo_wrapper {
+  padding-top: 20px;
 }
 
 @media (max-width: 600px) {

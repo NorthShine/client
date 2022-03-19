@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -16,7 +16,6 @@ import {
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useNotification } from '../../hooks/useNotification';
-import { useAuth } from '../../hooks/useAuth';
 import * as api from '../../api';
 import { v4 as uuid } from 'uuid';
 import styles from './OpenForm.module.css';
@@ -30,20 +29,22 @@ const createCompetence = () => ({
 
 export const OpenForm = () => {
   const navigate = useNavigate();
-  const { isAuth } = useAuth();
   const emailRef = useRef(null);
-  const [role, setRole] = useState('employee');
   const notification = useNotification();
   const isMobile = useMediaQuery('(max-width:600px)');
   const [competences, setCompetences] = useState([createCompetence()]);
+  const usernameRef = useRef(null);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       const data = {
+        username: usernameRef.current.value,
         email: emailRef.current.value,
-        role
+        role: 'employee',
+        competences
       };
+      console.log(data);
       await api.signin(data);
     } catch (err) {
       notification.warning(err.message);
@@ -101,7 +102,7 @@ export const OpenForm = () => {
                 label="Название компетенции"
                 id={item.id}
                 variant="outlined"
-                type="email"
+                type="text"
                 onChange={handleCompetencyNameChange}
                 fullWidth
                 autoFocus
@@ -146,8 +147,41 @@ export const OpenForm = () => {
           <Button
             variant="outlined"
             color="primary"
-            className={styles.add_competence}
+            fullWidth={isMobile}
+            className={styles.button}
             onClick={addCompetence}>
+            Добавить компетенцию
+          </Button>
+        </Grid>
+        <Grid container className={styles.userinfo_wrapper}>
+          <TextField
+            className={styles.userinfo_input}
+            label="Имя пользователя"
+            id="username"
+            variant="outlined"
+            type="text"
+            inputRef={usernameRef}
+            fullWidth
+            autoFocus
+          />
+          <TextField
+            className={styles.userinfo_input}
+            label="E-mail адрес"
+            id="email"
+            variant="outlined"
+            type="email"
+            inputRef={emailRef}
+            fullWidth
+            autoFocus
+          />
+        </Grid>
+        <Grid container>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth={isMobile}
+            className={styles.button}>
             Добавить компетенцию
           </Button>
         </Grid>
