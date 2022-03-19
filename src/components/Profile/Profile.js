@@ -22,7 +22,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
-
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -52,12 +51,12 @@ export const Profile = () => {
             such as general accounting, budgeting and forecasting, and accounting principles and
             legislation.
           </Typography>
-          <Container className={styles.profile__links}>
-          <Box className={styles.box__links}>
-            
-          <Link/>
-            </Box>        
-          </Container>
+          {user.links.map(link => (
+            <Box className={styles.box__links}>
+              <Link className={styles.box__icon} />
+              <Typography variant="p">{link.value}</Typography>
+            </Box>
+          ))}
         </Container>
         <Container className={styles.card__wrapper}>
           <Typography className={styles.skill__token} variant="h6">
