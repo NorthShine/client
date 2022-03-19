@@ -16,10 +16,12 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material';
-import { Edit, ExpandMore, CheckCircle } from '@mui/icons-material';
+import { Edit, ExpandMore, CheckCircle, Link } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
@@ -50,6 +52,12 @@ export const Profile = () => {
             such as general accounting, budgeting and forecasting, and accounting principles and
             legislation.
           </Typography>
+          <Container className={styles.profile__links}>
+          <Box className={styles.box__links}>
+            
+          <Link/>
+            </Box>        
+          </Container>
         </Container>
         <Container className={styles.card__wrapper}>
           <Typography className={styles.skill__token} variant="h6">

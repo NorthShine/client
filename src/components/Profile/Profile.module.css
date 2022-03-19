@@ -105,3 +105,12 @@
 .edit__button {
   width: 200px;
 }
+.profile__links {
+  padding-top: 20px;
+}
+.box__links {
+  width: 160px;
+  height:40px;
+  background-color: white;
+   border: 1px solid black
+}
