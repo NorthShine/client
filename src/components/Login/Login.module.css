@@ -18,15 +18,12 @@
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   border: 0.5px solid rgb(243, 243, 243);
   border-radius: 15px;
+  padding:35px;
   transform: translateY(50%);
 }
 div[class*='MuiTabs-flexContainer'] {
   justify-content: center;
 }
-.title {
-  padding-top: 40px;
-}
-
 @media (max-width: 900px) {
   .loginBox {
     box-shadow: none;
