@@ -17,13 +17,15 @@ import {
   changeCompetenceName,
   setCompetenceLevel,
   addCompetence,
-  removeCompetence
+  removeCompetence,
+  updateSkillTokenName,
+  updateSkillTokenDescription
 } from '../../store/reducers/skillToken/skillTokenReducer';
 import styles from './SkillTokenEditor.module.css';
 
 export const SkillTokenEditor = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const { competences } = useSelector(state => state.skillToken.token);
+  const { competences, name, description } = useSelector(state => state.skillToken.token);
   const dispatch = useDispatch();
 
   const handleCompetencyNameChange = event => {
@@ -44,8 +46,24 @@ export const SkillTokenEditor = () => {
     dispatch(removeCompetence({ id }));
   };
 
+  const handleTokenNameChange = event => {
+    dispatch(updateSkillTokenName({ value: event.target.value }));
+  };
+
   return (
     <>
+      <TextField
+        className={styles.input}
+        label="Название скилл-токена"
+        id={name}
+        variant="outlined"
+        type="text"
+        value={name}
+        onChange={handleTokenNameChange}
+        required
+        fullWidth
+        autoFocus
+      />
       {competences.map(item => {
         return (
           <Container key={item.id} className={styles.competences}>

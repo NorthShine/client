@@ -49,7 +49,7 @@ export const Profile = () => {
             {user.description}
           </Typography>
           {user.links.map(link => (
-            <Box className={styles.box__links}>
+            <Box key={link.id} className={styles.box__links}>
               <Link className={styles.box__icon} />
               <Typography variant="p">{link.value}</Typography>
             </Box>
