@@ -34,6 +34,7 @@ export const routes = [
             element: <AppLayout />,
             children: [
               { path: '/', element: <Home /> },
+              // { path: '/token/:tokenId', element: <SkillToken /> },
               {
                 path: '/profile',
                 element: <Profile />

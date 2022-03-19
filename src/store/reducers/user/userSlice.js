@@ -1,8 +1,69 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getUserAction } from './actionCreators';
+import DefaultAvatar from '../../../assets/images/avatar.png';
 
 const initialState = {
-  user: null,
+  user: {
+    name: 'John Doe',
+    avatar: DefaultAvatar,
+    skillTokens: [
+      {
+        name: 'Designer',
+        id: 0,
+        competences: [
+          {
+            name: 'HTML',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            name: 'CSS',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
+      },
+      {
+        name: 'Writer',
+        id: 1,
+        competences: [
+          {
+            name: 'HTML',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            name: 'CSS',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
+      },
+      ,
+      {
+        name: 'Developer',
+        id: 2,
+        competences: [
+          {
+            name: 'HTML',
+            level: {
+              name: 'Junior'
+            }
+          },
+          {
+            name: 'CSS',
+            level: {
+              name: 'Senior'
+            }
+          }
+        ]
+      }
+    ]
+  },
   isLoading: false,
   error: null
 };
