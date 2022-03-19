@@ -5,6 +5,7 @@ import { MainLayout } from '../components/MainLayout/MainLayout';
 import { Login } from '../components/Login/Login';
 import { Outlet } from 'react-router-dom';
 import { OpenForm } from '../components/OpenForm/OpenForm';
+import { Profile } from '../components/Profile/Profile';
 
 export const routes = [
   {
@@ -31,7 +32,13 @@ export const routes = [
           {
             path: '/',
             element: <AppLayout />,
-            children: [{ path: '/', element: <Home /> }]
+            children: [
+              { path: '/', element: <Home /> },
+              {
+                path: '/profile',
+                element: <Profile />
+              }
+            ]
           }
         ]
       }

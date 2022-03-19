@@ -10,8 +10,11 @@ import { store } from './store';
 import { Provider as StateProvider } from 'react-redux';
 import { Routes } from './routing/Routes';
 import { StyledEngineProvider } from '@mui/material/styles';
+import { ApiInterceptors } from './api';
 import '@fontsource/inter';
 import './styles.css';
+
+ApiInterceptors(store);
 
 const App = () => {
   const Providers = combineProviders([

@@ -17,15 +17,8 @@ import {
 import { Delete } from '@mui/icons-material';
 import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
-import { v4 as uuid } from 'uuid';
 import styles from './OpenForm.module.css';
-
-const createCompetence = () => ({
-  id: uuid(),
-  name: '',
-  level: 'junior',
-  access: ''
-});
+import { createCompetence } from '../../utils';
 
 export const OpenForm = () => {
   const navigate = useNavigate();
@@ -173,6 +166,7 @@ export const OpenForm = () => {
             variant="outlined"
             type="email"
             inputRef={emailRef}
+            required
             fullWidth
             autoFocus
           />

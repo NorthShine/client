@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -16,13 +17,11 @@ import {
   Paper
 } from '@mui/material';
 import {
+  Person,
+  FactCheck,
+  Settings,
   Menu as MenuIcon,
-  MoveToInbox as InboxIcon,
-  Mail as MailIcon,
-  ChevronLeft as ChevronLeftIcon,
-  Restore,
-  Favorite,
-  Archive
+  ChevronLeft as ChevronLeftIcon
 } from '@mui/icons-material';
 import styles from './Navbar.module.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -43,6 +42,24 @@ export const Navbar = () => {
     setOpen(open);
   };
 
+  const menuItems = [
+    {
+      name: 'Профиль',
+      icon: <Person />,
+      link: '/profile'
+    },
+    {
+      name: 'Компетенции',
+      icon: <FactCheck />,
+      link: '/tokens'
+    },
+    {
+      name: 'Настройки',
+      icon: <Settings />,
+      link: '/settings'
+    }
+  ];
+
   return (
     <div className={styles.root}>
       {isMobile ? (
@@ -53,9 +70,16 @@ export const Navbar = () => {
             onChange={(event, newValue) => {
               setValue(newValue);
             }}>
-            <BottomNavigationAction label="Recents" icon={<Restore />} />
-            <BottomNavigationAction label="Favorites" icon={<Favorite />} />
-            <BottomNavigationAction label="Nearby" icon={<Archive />} />
+            {menuItems.map(item => (
+              <BottomNavigationAction
+                key={item.name}
+                label={item.name}
+                icon={item.icon}
+                showLabel
+                component={NavLink}
+                to={item.link}
+              />
+            ))}
           </BottomNavigation>
         </Paper>
       ) : (
@@ -90,19 +114,10 @@ export const Navbar = () => {
             </div>
             <Divider />
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-            <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
+              {menuItems.map(item => (
+                <ListItem button key={item.name} component={NavLink} to={item.link}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
                 </ListItem>
               ))}
             </List>
