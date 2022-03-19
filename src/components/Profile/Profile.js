@@ -2,12 +2,10 @@ import { Container, Typography, Card, Stack, Tooltip, IconButton } from '@mui/ma
 import { Edit, CardTravel } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
-  const navigate = useNavigate();
-
   return (
     <Container className={styles.root}>
       <Container className={styles.image_wrapper}>
@@ -17,6 +15,15 @@ export const Profile = () => {
         <Typography variant="h5">{user.name}</Typography>
       </Container>
       <Container className={styles.image_wrapper}>
+      <Container className={styles.aboutme__wrapper}>
+      <Typography className={styles.skill__token} variant="h6">О себе
+      </Typography>
+      <Card className={styles.aboutme__card} variant="outlined"> <Tooltip title="Редактировать">
+                  <IconButton className={styles.aboutme__editior} onClick={() => {}}>
+                    <Edit />
+                  </IconButton>
+                </Tooltip></Card>
+      </Container>
         <Container className={styles.card__wrapper}>
           <Typography className={styles.skill__token} variant="h6">
             Skilltokens:
@@ -29,7 +36,7 @@ export const Profile = () => {
                   {token.name}
                 </Typography>
                 <Tooltip title="Редактировать">
-                  <IconButton onClick={() => navigate(`/token/${token.id}`)}>
+                  <IconButton onClick={() => {}}>
                     <Edit />
                   </IconButton>
                 </Tooltip>
