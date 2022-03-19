@@ -13,7 +13,13 @@ import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
 import styles from './ProfileEditor.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserLink, addUserLink, removeUserLink } from '../../store/reducers/user/userSlice';
+import {
+  updateUserLink,
+  addUserLink,
+  removeUserLink,
+  updateUserName,
+  updateUserDescription
+} from '../../store/reducers/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const ProfileEditor = () => {
@@ -40,6 +46,14 @@ export const ProfileEditor = () => {
     dispatch(addUserLink());
   };
 
+  const handleUpdateUsername = event => {
+    dispatch(updateUserName({ value: event.target.value }));
+  };
+
+  const handleUpdateDescription = event => {
+    dispatch(updateUserDescription({ value: event.target.value }));
+  };
+
   return (
     <Container component="main" className={styles.openForm} maxWidth="sm">
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -51,12 +65,14 @@ export const ProfileEditor = () => {
             variant="outlined"
             type="text"
             value={user.name}
+            onChange={handleUpdateUsername}
             required
             fullWidth
             autoFocus
           />
           <TextField
             className={styles.userinfo_input}
+            onChange={handleUpdateDescription}
             label="О себе"
             id="description"
             variant="outlined"

@@ -93,6 +93,8 @@ export const updateUserSkillToken = createAction('user/updateUserSkillToken');
 export const updateUserLink = createAction('user/updateUserLink');
 export const addUserLink = createAction('user/addUserLink');
 export const removeUserLink = createAction('user/removeUserLink');
+export const updateUserName = createAction('user/updateUserName');
+export const updateUserDescription = createAction('user/updateUserDescription');
 
 export const userSlice = createSlice({
   name: 'user',
@@ -103,6 +105,14 @@ export const userSlice = createSlice({
     }
   },
   extraReducers: builder => {
+    builder.addCase(updateUserName, (state, action) => {
+      const { value } = action.payload;
+      state.user.name = value;
+    });
+    builder.addCase(updateUserDescription, (state, action) => {
+      const { value } = action.payload;
+      state.user.description = value;
+    });
     builder.addCase(removeUserLink, (state, action) => {
       const { id } = action.payload;
       state.user.links = state.user.links.filter(item => item.id !== id);

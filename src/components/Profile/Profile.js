@@ -46,10 +46,7 @@ export const Profile = () => {
             О себе
           </Typography>
           <Typography variant="p" sx={{ marginBottom: '2rem' }}>
-            Highly organized and detail-oriented honors graduate from the University of Georgia
-            seeking an entry-level position as an accountant. Served as a peer tutor for courses
-            such as general accounting, budgeting and forecasting, and accounting principles and
-            legislation.
+            {user.description}
           </Typography>
           {user.links.map(link => (
             <Box className={styles.box__links}>
