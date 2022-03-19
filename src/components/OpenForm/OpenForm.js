@@ -104,6 +104,7 @@ export const OpenForm = () => {
                 variant="outlined"
                 type="text"
                 onChange={handleCompetencyNameChange}
+                required
                 fullWidth
                 autoFocus
               />
@@ -182,7 +183,7 @@ export const OpenForm = () => {
             color="primary"
             fullWidth={isMobile}
             className={styles.button}>
-            Добавить компетенцию
+            Отправить
           </Button>
         </Grid>
       </form>
