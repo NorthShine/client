@@ -162,6 +162,7 @@ export const OpenForm = () => {
             variant="outlined"
             type="text"
             inputRef={usernameRef}
+            required
             fullWidth
             autoFocus
           />
