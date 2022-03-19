@@ -52,18 +52,18 @@ export const Profile = () => {
             Skilltokens:
           </Typography>
           {user.skillTokens.map(token => (
-            <Accordion className={styles.accord__style} key={token.id}>
+            <Accordion className={ `${styles.min_height} ${styles.accord__style}` }  key={token.id}>
               <AccordionSummary
                 expandIcon={<ExpandMore />}
                 aria-controls="panel1a-content"
                 id={token.id}>
-                <Typography>{token.name}</Typography>
+                <Typography variant="h6">{token.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Stack direction="column">
-                  <List>
+                <Stack direction="column" className={styles.list}>
+                  <List >
                     {token.competences.map(item => (
-                      <ListItem key={item.id} disablePadding>
+                      <ListItem  key={item.id} disablePadding>
                         <ListItemButton>
                           <ListItemIcon>
                             <CheckCircle />
