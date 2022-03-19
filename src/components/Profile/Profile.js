@@ -16,10 +16,10 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material';
-import { Edit, ExpandMore, CheckCircle, Link } from '@mui/icons-material';
+import { Edit, ExpandMore, CheckCircle, Link as LinkIcon } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 export const Profile = () => {
@@ -28,39 +28,35 @@ export const Profile = () => {
   const navigate = useNavigate();
 
   return (
-    <Container className={styles.root}>
-      <Container className={styles.image_wrapper}>
+    <Container className={styles.root} component="main" maxWidth="md">
+      <Container className={styles.wrapper}>
         <img src={user.avatar} />
       </Container>
-      <Container className={styles.image_wrapper}>
+      <Container className={styles.wrapper}>
         <Typography variant="h5">{user.name}</Typography>
       </Container>
-      <Container className={styles.image_wrapper}>
-        <Typography sx={{ color: 'gray' }} variant="h6">
-          Enthusiast, inspiration seeker
-        </Typography>
-      </Container>
-      <Container className={styles.image_wrapper}>
-        <Container sx={{ paddingBottom: '2rem' }}>
-          <Typography className={styles.skill__token} variant="h6">
-            О себе
-          </Typography>
-          <Typography className={styles.typography__bio} variant="p" sx={{ marginBottom: '2rem' }}>
-            {user.description}
-          </Typography>
+      <Container className={styles.wrapper}>
+        <Container className={styles.info}>
+          <Box className={styles.bio_wrapper}>
+            <Typography className={styles.bio} variant="p" sx={{ marginBottom: '2rem' }}>
+              {user.description}
+            </Typography>
+          </Box>
           {user.links.map(link => (
-            <Box key={link.id} className={styles.box__links}>
-              <Link className={styles.box__icon} />
-              <Typography variant="p">{link.value}</Typography>
-            </Box>
+            <a key={link.id} className={styles.link} href={link.value} target="_blank">
+              <Box className={styles.link_wrapper}>
+                <LinkIcon className={styles.link_icon} />
+                <Typography variant="p">{link.value}</Typography>
+              </Box>
+            </a>
           ))}
         </Container>
-        <Container className={styles.card__wrapper}>
-          <Typography className={styles.skill__token} variant="h6">
+        <Container className={styles.skillTokens}>
+          <Typography className={styles.skillToken_title} variant="h6">
             Скилл-токены:
           </Typography>
           {user.skillTokens.map(token => (
-            <Accordion className={`${styles.min_height} ${styles.accord__style}`} key={token.id}>
+            <Accordion className={`${styles.min_height} ${styles.accordion}`} key={token.id}>
               <AccordionSummary
                 expandIcon={<ExpandMore />}
                 aria-controls="panel1a-content"

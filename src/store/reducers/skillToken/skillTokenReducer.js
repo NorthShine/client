@@ -16,8 +16,12 @@ export const removeCompetence = createAction('skillToken/removeCompetence');
 export const changeCompetenceName = createAction('skillToken/changeCompetenceName');
 export const setCompetenceLevel = createAction('skillToken/setCompetenceName');
 export const updateSkillTokenName = createAction('skillToken/updateSkillTokenName');
+export const updateSkillTokenTags = createAction('skillToken/updateSkillTokenTags');
 
 export const skillTokenReducer = createReducer(initialState, builder => {
+  builder.addCase(updateSkillTokenTags, (state, action) => {
+    state.token.tags = action.payload;
+  });
   builder.addCase(updateSkillTokenName, (state, action) => {
     const { value } = action.payload;
     state.token.name = value;

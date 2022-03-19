@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Typography, Container, TextField, useMediaQuery } from '@mui/material';
 import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
-import styles from './OpenForm.module.css';
+import styles from './SkillTokenSearch.module.css';
 import { SkillTokenEditor } from '../SkillTokenEditor/SkillTokenEditor';
 import { useSelector } from 'react-redux';
 
-export const OpenForm = () => {
+export const SkillTokenSearch = () => {
   const navigate = useNavigate();
   const emailRef = useRef(null);
   const notification = useNotification();
@@ -17,18 +17,6 @@ export const OpenForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const data = {
-        username: usernameRef.current.value,
-        email: emailRef.current.value,
-        role: 'EMPLOYEE',
-        competences
-      };
-      console.log(data);
-      await api.register(data);
-    } catch (err) {
-      notification.warning(err.message);
-    }
   };
 
   return (

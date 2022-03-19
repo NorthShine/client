@@ -1,6 +1,8 @@
+.root {
+  padding: 25px 20px;
+}
 .form {
   width: 100%;
-  margin-top: 10px;
 }
 .submit {
   margin: 10px;
@@ -43,10 +45,13 @@
 }
 
 .save {
-  margin: 10px;
+  margin: 10px 0;
 }
 
 @media (max-width: 600px) {
+  .root {
+    height: calc(100% + 100px);
+  }
   .competences {
     flex-direction: column;
     border: 0.5px solid rgb(217, 217, 217);
@@ -63,7 +68,4 @@
     margin-bottom: 10px;
     width: 100%;
   }
-}
-.skill__container {
-padding: 25px 20px;
 }
