@@ -30,7 +30,7 @@ export const Login = () => {
         email: emailRef.current.value,
         role
       };
-      await api.signin(data);
+      await api.register(data);
     } catch (err) {
       notification.warning(err.message);
     }

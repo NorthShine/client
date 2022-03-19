@@ -25,7 +25,7 @@ export const OpenForm = () => {
         competences
       };
       console.log(data);
-      await api.signin(data);
+      await api.register(data);
     } catch (err) {
       notification.warning(err.message);
     }
