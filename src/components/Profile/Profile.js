@@ -2,10 +2,13 @@ import { Container, Typography, Card, Stack, Tooltip, IconButton } from '@mui/ma
 import { Edit, CardTravel } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { Navigate } from 'react-router-dom';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
+  const navigate = useNavigate();
   return (
     <Container className={styles.root}>
       <Container className={styles.image_wrapper}>
@@ -30,13 +33,14 @@ export const Profile = () => {
           </Typography>
           {user.skillTokens.map(token => (
             <Card className={styles.selected__card} key={token.id} variant="outlined">
+              
               <Stack className={styles.selected__icon} direction="row" spacing={5}>
                 <CardTravel />
                 <Typography className={styles.selected__speciality} variant="h6">
                   {token.name}
                 </Typography>
                 <Tooltip title="Редактировать">
-                  <IconButton onClick={() => {}}>
+                <IconButton onClick={() => navigate(`/token/${token.id}`)}>
                     <Edit />
                   </IconButton>
                 </Tooltip>
