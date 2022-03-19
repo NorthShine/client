@@ -2,6 +2,7 @@ import { Container, Typography, Card, Stack, Tooltip, IconButton } from '@mui/ma
 import { Edit, CardTravel } from '@mui/icons-material';
 import styles from './Profile.module.css';
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);

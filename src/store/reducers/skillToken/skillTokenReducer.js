@@ -27,7 +27,7 @@ export const skillTokenReducer = createReducer(initialState, builder => {
   });
   builder.addCase(changeCompetenceName, (state, action) => {
     const { id, value } = action.payload;
-    return state.competences.map(item => {
+    state.competences = state.competences.map(item => {
       if (item.id === id) {
         item.name = value;
       }
@@ -36,9 +36,9 @@ export const skillTokenReducer = createReducer(initialState, builder => {
   });
   builder.addCase(setCompetenceLevel, (state, action) => {
     const { name, value } = action.payload;
-    return state.competences.map(item => {
+    state.competences = state.competences.map(item => {
       if (item.id === name) {
-        item.level = value;
+        item.level.name = value;
       }
       return item;
     });
