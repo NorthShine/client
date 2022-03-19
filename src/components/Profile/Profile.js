@@ -45,7 +45,7 @@ export const Profile = () => {
           <Typography className={styles.skill__token} variant="h6">
             О себе
           </Typography>
-          <Typography variant="p" sx={{ marginBottom: '2rem' }}>
+          <Typography className={styles.typography__bio} variant="p" sx={{ marginBottom: '2rem' }}>
             {user.description}
           </Typography>
           {user.links.map(link => (

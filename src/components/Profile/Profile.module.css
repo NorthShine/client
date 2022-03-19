@@ -115,7 +115,7 @@
   width: 160px;
   height: 40px;
   background-color: white;
-  margin: 10px 0;
+  margin: 15px 0;
   width: 100%;
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -125,4 +125,8 @@
 }
 .box__icon {
   margin: 0 10px;
+}
+.typography__bio {
+line-height: 24px;
+padding-bottom: 30px;
 }
