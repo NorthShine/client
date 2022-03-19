@@ -1,5 +1,4 @@
 .root {
-  display: flex;
+  display: block;
   font-family: Inter;
-  align-items: center;
 }

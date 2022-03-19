@@ -19,6 +19,7 @@
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   border: 0.5px solid rgb(243, 243, 243);
   border-radius: 15px;
+  transform: translateY(50%);
 }
 div[class*='MuiTabs-flexContainer'] {
   justify-content: center;

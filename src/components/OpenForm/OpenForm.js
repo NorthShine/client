@@ -18,7 +18,15 @@ import { Delete } from '@mui/icons-material';
 import { useNotification } from '../../hooks/useNotification';
 import { useAuth } from '../../hooks/useAuth';
 import * as api from '../../api';
+import { v4 as uuid } from 'uuid';
 import styles from './OpenForm.module.css';
+
+const createCompetence = () => ({
+  id: uuid(),
+  name: '',
+  level: 'junior',
+  access: ''
+});
 
 export const OpenForm = () => {
   const navigate = useNavigate();
@@ -27,14 +35,7 @@ export const OpenForm = () => {
   const [role, setRole] = useState('employee');
   const notification = useNotification();
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [competences, setCompetences] = useState([
-    {
-      id: 0,
-      name: '',
-      level: 'junior',
-      access: ''
-    }
-  ]);
+  const [competences, setCompetences] = useState([createCompetence()]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -52,7 +53,7 @@ export const OpenForm = () => {
   const handleCompetencyNameChange = event => {
     setCompetences(items => {
       return items.map(item => {
-        if (item.id === +event.target.id) {
+        if (item.id === event.target.id) {
           item.name = event.target.value;
         }
         return item;
@@ -63,7 +64,7 @@ export const OpenForm = () => {
   const handleLevelSelect = event => {
     setCompetences(items => {
       return items.map(item => {
-        if (item.id === +event.target.name) {
+        if (item.id === event.target.name) {
           item.level = event.target.value;
         }
         return item;
@@ -73,13 +74,7 @@ export const OpenForm = () => {
 
   const addCompetence = () => {
     setCompetences(items => {
-      const newCompetence = {
-        id: items.length,
-        name: '',
-        level: 'junior',
-        access: ''
-      };
-      items.push(newCompetence);
+      items.push(createCompetence());
       return [...items];
     });
   };
@@ -99,13 +94,12 @@ export const OpenForm = () => {
       </Typography>
       <form className={styles.form} onSubmit={handleSubmit}>
         {competences.map(item => {
-          const id = String(item.id);
           return (
-            <Container key={id} className={styles.competences}>
+            <Container key={item.id} className={styles.competences}>
               <TextField
                 className={styles.input}
                 label="Название компетенции"
-                id={id}
+                id={item.id}
                 variant="outlined"
                 type="email"
                 onChange={handleCompetencyNameChange}
@@ -118,8 +112,8 @@ export const OpenForm = () => {
                   <Select
                     className={styles.select}
                     labelId="level"
-                    id={id}
-                    name={id}
+                    id={item.id}
+                    name={item.id}
                     value={item.level}
                     label="Уровень"
                     onChange={handleLevelSelect}>
