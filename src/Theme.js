@@ -12,7 +12,7 @@ export const Theme = createTheme({
       light: '#ff7961',
       main: '#f44336',
       dark: '#ba000d',
-      contrastText: '#fff'
+      contrastText: '#000'
     }
   },
   typography: {

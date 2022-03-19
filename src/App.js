@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { NotificationProvider } from './providers/NotificationProvider';
 import { LoaderProvider } from './providers/LoaderProvider';

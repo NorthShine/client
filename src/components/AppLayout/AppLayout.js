@@ -5,7 +5,7 @@ import { Container } from '@mui/material';
 
 export const AppLayout = () => {
   return (
-    <Container maxWidth={false} sx={{ height: '100%' }} disableGutters>
+    <Container maxWidth={false} disableGutters>
       <Navbar />
       <Outlet />
     </Container>
