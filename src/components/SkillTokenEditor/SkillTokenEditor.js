@@ -53,7 +53,7 @@ export const SkillTokenEditor = () => {
   return (
     <>
       <TextField
-        className={styles.input}
+        className={styles.competences2}
         label="Название скилл-токена"
         id={name}
         variant="outlined"

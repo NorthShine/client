@@ -32,7 +32,7 @@ export const SkillToken = () => {
   }, []);
 
   return (
-    <Container component="main" maxWidth="md">
+    <Container className={styles.skill__container} component="main" maxWidth="md">
       <form onSubmit={handleSave}>
         <SkillTokenEditor />
         <Button
