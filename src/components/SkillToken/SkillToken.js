@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setSkillToken } from '../../store/reducers/skillToken/skillTokenReducer';
 import { updateUserSkillToken } from '../../store/reducers/user/userSlice';
-import { Container, Button } from '@mui/material';
+import { Container, Button, Typography } from '@mui/material';
 import { Save } from '@mui/icons-material';
 
 export const SkillToken = () => {
