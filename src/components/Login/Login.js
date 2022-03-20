@@ -41,12 +41,12 @@ export const Login = () => {
         .unwrap()
         .then(() => {
           setAuth(true);
-          navigate('/profile');
         })
         .catch(err => {
           notification.error(err.message);
           setAuth(false);
         });
+      navigate('/profile');
     }
   };
 
