@@ -29,11 +29,14 @@ export const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      // const data = {
-      //   email: emailRef.current.value,
-      //   role
-      // };
-      // await api.register(data);
+      const data = {
+        email: emailRef.current.value,
+        role
+      };
+      await api.register(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
       dispatch(getUserAction({ email: emailRef.current.value }))
         .unwrap()
         .then(() => {
@@ -44,8 +47,6 @@ export const Login = () => {
           notification.error(err.message);
           setAuth(false);
         });
-    } catch (err) {
-      notification.warning(err.message);
     }
   };
 
