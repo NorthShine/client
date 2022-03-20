@@ -1,19 +1,11 @@
-.form {
-  width: 100%;
-  margin-top: 10px;
+.button {
+  margin: 10px 0;
+}
+.name {
+  padding-bottom: 20px;
 }
 .input {
   padding-right: 10px;
-}
-.search {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-}
-.title {
-  padding-top: 40px;
 }
 .selectWrapper {
   width: auto;
@@ -23,30 +15,13 @@
   width: 100%;
 }
 .competences {
-  padding: 20px 10px;
+  padding: 20px 0;
   display: flex;
   align-items: center;
   flex-direction: row;
 }
-
-.userinfo_input {
-  margin: 10px 0;
-}
-
-.userinfo_wrapper {
-  padding-top: 20px;
-}
-
-.list_item {
-  padding: 0;
-}
-
-.icon {
-  fill: #8a87f6;
-}
-
-.skills_wrapper {
-  padding: 15px;
+.addCompetence_wrapper {
+  margin-bottom: 30px;
 }
 
 @media (max-width: 600px) {
@@ -55,6 +30,7 @@
     border: 0.5px solid rgb(217, 217, 217);
     border-radius: 10px;
     margin: 15px 0;
+    padding: 15px 10px;
   }
   .input {
     margin-bottom: 10px;
@@ -66,4 +42,7 @@
     margin-bottom: 10px;
     width: 100%;
   }
+}
+.work__experience {
+  width: 180px;
 }

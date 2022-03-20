@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -11,21 +11,60 @@ import {
   ListItem,
   ListItemText,
   ListItemButton,
-  Stack
+  Stack,
+  Typography
 } from '@mui/material';
 import { SignalCellular4Bar, SignalCellular3Bar, SignalCellular1Bar } from '@mui/icons-material';
 import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
 import styles from './SkillTokenSearch.module.css';
-import { SkillTokenEditor } from '../SkillTokenEditor/SkillTokenEditor';
-import { useSelector } from 'react-redux';
+import { FilterForm } from '../FilterForm/FilterForm';
 
 export const SkillTokenSearch = () => {
-  const navigate = useNavigate();
-  const emailRef = useRef(null);
+  const notification = useNotification();
   const isMobile = useMediaQuery('(max-width:600px)');
-  const usernameRef = useRef(null);
+  const [competence, setCompetence] = useState('');
+  const [tags, setTags] = useState([]);
+  const [skillTokens, setSkillTokens] = useState(
+    Array.from({ length: 20 }, () => ({
+      name: 'Designer',
+      id: '0',
+      tags: ['HTML', 'CSS', 'Python'],
+      competences: [
+        {
+          id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
+          name: 'Figma',
+          level: {
+            name: 'Junior'
+          }
+        },
+        {
+          id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
+          name: 'HTML',
+          level: {
+            name: 'Middle'
+          }
+        },
+        {
+          id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
+          name: 'CSS',
+          level: {
+            name: 'Senior'
+          }
+        }
+      ]
+    }))
+  );
 
+  useEffect(() => {
+    api
+      .fetchSkillTokens({
+        tags,
+        competence
+      })
+      .then(setSkillTokens)
+      .catch(err => notification.error(err.message));
+  }, [competence, tags]);
   const handleSubmit = async e => {
     e.preventDefault();
   };
@@ -36,67 +75,14 @@ export const SkillTokenSearch = () => {
     Senior: <SignalCellular4Bar className={styles.icon} />
   };
 
-  const skillTokens = Array.from({ length: 20 }, () => ({
-    name: 'Designer',
-    id: '0',
-    tags: ['HTML', 'CSS', 'Python'],
-    competences: [
-      {
-        id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
-        name: 'Figma',
-        level: {
-          name: 'Junior'
-        }
-      },
-      {
-        id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
-        name: 'HTML',
-        level: {
-          name: 'Middle'
-        }
-      },
-      {
-        id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
-        name: 'CSS',
-        level: {
-          name: 'Senior'
-        }
-      }
-    ]
-  }));
-
   return (
     <Container component="main" className={styles.search} maxWidth={false}>
       <Grid container spacing={3}>
         <Grid item xs={4} md={3}>
           <form className={styles.form} onSubmit={handleSubmit}>
-            <SkillTokenEditor />
-            <Grid container className={styles.userinfo_wrapper}>
-              <TextField
-                className={styles.userinfo_input}
-                label="Имя пользователя"
-                id="username"
-                variant="outlined"
-                type="text"
-                inputRef={usernameRef}
-                required
-                fullWidth
-                autoFocus
-              />
-              <TextField
-                className={styles.userinfo_input}
-                label="E-mail адрес"
-                id="email"
-                variant="outlined"
-                type="email"
-                inputRef={emailRef}
-                required
-                fullWidth
-                autoFocus
-              />
-            </Grid>
+            <FilterForm />
             <Grid container>
-              <Button type="submit" variant="contained" color="primary" fullWidth={isMobile}>
+              <Button type="submit" variant="contained" color="primary" fullWidth>
                 Отправить
               </Button>
             </Grid>
@@ -109,6 +95,7 @@ export const SkillTokenSearch = () => {
                 <Grid key={token.id} item xs={6} lg={4}>
                   <Paper elevation={1}>
                     <Container className={styles.skills_wrapper}>
+                      <Typography variant="h6">{token.name}</Typography>
                       <List>
                         {token.competences.slice(0, 5).map(item => {
                           return (
