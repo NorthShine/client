@@ -83,7 +83,7 @@ export const ProfileEditor = () => {
             autoFocus
             multiline
           />
-          <Typography variant="h6">Ссылки</Typography>
+          <Typography className={styles.typography__link} variant="h6">Ссылки</Typography>
           {user.links.map(item => (
             <Container key={item.id} className={styles.competences}>
               <TextField
