@@ -54,7 +54,7 @@ export const FilterForm = ({ name, setName, tags }) => {
         fullWidth
         autoFocus
       />
-      <Autocomplete
+      <Autocomplete className={styles.tags__custom}
         multiple
         id="tags-filled"
         freeSolo
