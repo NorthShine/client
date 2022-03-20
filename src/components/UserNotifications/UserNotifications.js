@@ -11,7 +11,9 @@ import {
   ListItem,
   ListItemIcon,
   ListItemButton,
-  ListItemText
+  ListItemText,
+  ListItemAvatar,
+  Avatar
 } from '@mui/material';
 import { Edit, ExpandMore, CheckCircle, Link as LinkIcon, Delete, Add } from '@mui/icons-material';
 import styles from './UserNotifications.module.css';
@@ -21,44 +23,54 @@ import Box from '@mui/material/Box';
 import { addUserSkillToken, removeUserSkillToken } from '../../store/reducers/user/userSlice';
 import { createSkilltoken } from '../../utils';
 import * as api from '../../api';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const UserNotifications = () => {
   const user = useSelector(state => state.user.user);
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [notifications, setNotifications] = useState([]);
 
-  // useEffect(() => {
-  //   api
-  //     .getNotifications()
-  //     .then(res => console.log(res))
-  //     .catch(err => console.log(err));
-  // }, []);
+  useEffect(() => {
+    api
+      .getNotification()
+      .then(res => {
+        console.log(res.data);
+        setNotifications(
+          Array.from({ length: 5 }, async (_, id) => {
+            return {
+              id,
+              message: 'Hello! Please accept my request!'
+            };
+          })
+        );
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <Container className={styles.root} component="main" maxWidth="md">
       <Container className={styles.wrapper}>
-        {/* <List dense={dense}>
-          {generate(
-            <ListItem
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteIcon />
-                </IconButton>
-              }>
-              <ListItemAvatar>
-                <Avatar>
-                  <FolderIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="Single-line item"
-                secondary={secondary ? 'Secondary text' : null}
-              />
-            </ListItem>
-          )}
-        </List> */}
+        <List fullWidth sx={{ width: '100% !important' }}>
+          {notifications.map(item => {
+            console.log(item);
+            return (
+              <ListItem
+                key={item.message}
+                secondaryAction={
+                  <Button variant="contained" color="primary" fullWidth>
+                    Ответить
+                  </Button>
+                }>
+                <ListItemAvatar>
+                  <Avatar src={user.avatar} />
+                </ListItemAvatar>
+                <ListItemText primary={item.message} />
+              </ListItem>
+            );
+          })}
+        </List>
       </Container>
     </Container>
   );

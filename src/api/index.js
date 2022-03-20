@@ -14,8 +14,10 @@ export const addCompetence = data => API.post('competency', data); // { name, le
 export const removeCompetence = data => API.delete('competency', data); // { id }
 export const refresh = () => API.get('api/token/refresh/');
 export const addSkillToken = data => API.post('skilltoken/', data); // { name, level: {name}, user: {email}}
-export const sendNotification = data => API.post('notification/', data);
-export const getNotification = data => API.post('notification/', data);
+export const sendNotification = ({ email, tokenId }) =>
+  API.post(`notification/${email}:${tokenId}`);
+export const getNotification = data =>
+  API.get('notification/employee@test.com:fca48fa8-de40-4246-8084-68966352e4f1/');
 export const fetchSkillTokens = ({ name }) => API.get(`search?q=${name}`);
 
 export const ApiInterceptors = store => {

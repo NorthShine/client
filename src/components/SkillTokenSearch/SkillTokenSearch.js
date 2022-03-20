@@ -19,6 +19,7 @@ import { useNotification } from '../../hooks/useNotification';
 import * as api from '../../api';
 import styles from './SkillTokenSearch.module.css';
 import { FilterForm } from '../FilterForm/FilterForm';
+import { useSelector } from 'react-redux';
 
 export const SkillTokenSearch = () => {
   const notification = useNotification();
@@ -26,6 +27,7 @@ export const SkillTokenSearch = () => {
   const [name, setName] = useState('');
   const [tags, setTags] = useState([]);
   const [skillTokens, setSkillTokens] = useState([]);
+  const user = useSelector(state => state.user.user);
 
   // Array.from({ length: 20 }, () => ({
   //   name: 'Designer',
@@ -85,6 +87,16 @@ export const SkillTokenSearch = () => {
     Senior: <SignalCellular4Bar className={styles.icon} />
   };
 
+  const handleSendNotification = tokenId => {
+    api
+      .sendNotification({
+        email: user.email,
+        tokenId
+      })
+      .catch(err => console.log(err))
+      .finally(() => notification.success('Сообщение успешно отправлено!'));
+  };
+
   return (
     <Container component="main" className={styles.search} maxWidth={false}>
       <Grid container spacing={3} direction={isMobile ? 'column' : 'row'}>
@@ -100,39 +112,45 @@ export const SkillTokenSearch = () => {
         </Grid>
         <Grid item xs={8} md={9}>
           <Grid container spacing={2}>
-            {skillTokens.map(token => {
-              return (
-                <Grid key={token.ext_id} item xs={12} md={6} lg={4}>
-                  <Paper elevation={1}>
-                    <Container className={styles.skills_wrapper}>
-                      <Typography variant="h6">{token.name}</Typography>
-                      <List>
-                        {token.competencies.slice(0, 5).map(item => {
-                          return (
-                            <ListItem
-                              key={item.id}
-                              secondaryAction={levelIcons[item.level.name]}
-                              disablePadding>
-                              <ListItemButton className={styles.list_item}>
-                                <ListItemText primary={item.name} />
-                              </ListItemButton>
-                            </ListItem>
-                          );
-                        })}
-                      </List>
-                      <Stack direction="row" spacing={1}>
-                        <Button variant="contained" color="primary" fullWidth>
-                          Откликнуться
-                        </Button>
-                        <Button variant="outlined" color="primary" fullWidth>
-                          Подробнее
-                        </Button>
-                      </Stack>
-                    </Container>
-                  </Paper>
-                </Grid>
-              );
-            })}
+            {skillTokens
+              .filter(token => token.competencies.length)
+              .map(token => {
+                return (
+                  <Grid key={token.ext_id} item xs={12} md={6} lg={4}>
+                    <Paper elevation={1}>
+                      <Container className={styles.skills_wrapper}>
+                        <Typography variant="h6">{token.name}</Typography>
+                        <List>
+                          {token.competencies.slice(0, 5).map(item => {
+                            return (
+                              <ListItem
+                                key={item.id}
+                                secondaryAction={levelIcons[item.level.name]}
+                                disablePadding>
+                                <ListItemButton className={styles.list_item}>
+                                  <ListItemText primary={item.name} />
+                                </ListItemButton>
+                              </ListItem>
+                            );
+                          })}
+                        </List>
+                        <Stack direction="row" spacing={1}>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            onClick={() => handleSendNotification(token.id)}>
+                            Откликнуться
+                          </Button>
+                          <Button variant="outlined" color="primary" fullWidth>
+                            Подробнее
+                          </Button>
+                        </Stack>
+                      </Container>
+                    </Paper>
+                  </Grid>
+                );
+              })}
           </Grid>
         </Grid>
       </Grid>
