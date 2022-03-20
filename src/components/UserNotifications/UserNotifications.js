@@ -38,12 +38,10 @@ export const UserNotifications = () => {
       .then(res => {
         console.log(res.data);
         setNotifications(
-          Array.from({ length: 5 }, async (_, id) => {
-            return {
-              id,
-              message: 'Hello! Please accept my request!'
-            };
-          })
+          Array.from({ length: 5 }, (_, id) => ({
+            id,
+            message: 'Hello! Please accept my request!'
+          }))
         );
       })
       .catch(err => console.log(err));
