@@ -63,11 +63,11 @@ export const SkillTokenSearch = () => {
         competence
       })
       .then(res => {
-        console.log(res);
-        setSkillTokens(res);
+        setSkillTokens(res.data);
       })
       .catch(err => notification.error(err.message));
   }, [competence, tags]);
+
   const handleSubmit = async e => {
     e.preventDefault();
   };

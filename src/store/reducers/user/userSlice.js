@@ -152,6 +152,7 @@ export const userSlice = createSlice({
       // hardcoded
       action.payload.avatar = DefaultAvatar;
       action.payload.links = [];
+      action.payload.name = 'John Doe';
       action.payload.description = 'My placeholder description';
 
       state.user = action.payload;

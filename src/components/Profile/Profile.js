@@ -34,7 +34,7 @@ export const Profile = () => {
   };
 
   const handleRemoveSkillToken = id => {
-    dispatch(removeUserSkillToken(id));
+    dispatch(removeUserSkillToken({ id }));
   };
 
   return (
