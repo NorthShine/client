@@ -2,7 +2,6 @@
   margin: 10px 0;
 }
 .name {
-  padding-bottom: 20px;
 }
 .input {
   padding-right: 10px;
@@ -31,6 +30,7 @@
     border-radius: 10px;
     margin: 15px 0;
     padding: 15px 10px;
+    
   }
   .input {
     margin-bottom: 10px;
@@ -38,12 +38,17 @@
     width: 100%;
   }
   .selectWrapper {
-    margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
   }
+  .work__experience {
+    margin-top: 10px;
+    margin-left: 0 !important;
+    width: 100% !important;
+    }
 }
 .work__experience {
   width: 170px;
   margin-left: 10px;
+  padding-top: ;
 }
