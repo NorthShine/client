@@ -139,3 +139,11 @@
   justify-content: center;
   display: flex;
 }
+@media (max-width: 600px) {
+  .bio_wrapper {
+    padding-bottom: 0 !important;
+  }
+  .info {
+    padding-bottom: 25px !important;
+  }
+}
