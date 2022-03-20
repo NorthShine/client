@@ -2,7 +2,7 @@ import axios from 'axios';
 import { setAccessTokenAction, setAuthAction } from '../store/reducers/auth/authReducer';
 
 export const API = axios.create({
-  baseURL: 'http://129.153.8.155:7777/',
+  baseURL: process.env.REACT_APP_API_URL,
   withCredentials: true
 });
 
