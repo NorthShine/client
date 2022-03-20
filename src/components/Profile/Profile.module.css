@@ -136,4 +136,6 @@
 }
 .bio_wrapper {
   padding-bottom: 10px;
+  justify-content: center;
+  display: flex;
 }
