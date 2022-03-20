@@ -52,7 +52,7 @@ export const SkillTokenEditor = () => {
 
   return (
     <>
-    
+         <Container className={styles.competences}>
       <TextField
         className={styles.competences2}
         label="Название скилл-токена"
@@ -71,7 +71,7 @@ export const SkillTokenEditor = () => {
                 <Select
                   className={styles.select}
                   labelId="experience"
-                  label="Стаж работы"
+                  label="Опыт работы"
                   spacing={2}
                   onChange={handleLevelSelect}>
                   <MenuItem value="Without_experience">Без опыта</MenuItem>
@@ -86,13 +86,13 @@ export const SkillTokenEditor = () => {
                 </Select>
               </FormControl>
             </Container>
+            </Container>
       {competences.map(item => {
         return (
           <Container key={item.id} className={styles.competences}>
             <TextField
               className={styles.input}
               label="Название компетенции"
-              id={item.id}
               variant="outlined"
               type="text"
               value={item.name}
