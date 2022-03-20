@@ -1,12 +1,13 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import { getUserAction } from './actionCreators';
 import DefaultAvatar from '../../../assets/images/avatar.png';
-import { createCompetence, createUserLink } from '../../../utils';
+import { createUserLink } from '../../../utils';
 
 const initialState = {
   user: {
     name: 'John Doe',
     avatar: DefaultAvatar,
+    role: 'EMPLOYER',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae nibh accumsan, convallis turpis a, sodales odio. Ut vel arcu a ante finibus ultrices. Cras ut ligula semper, commodo erat quis, posuere mi. Aenean ut suscipit mi, nec imperdiet erat. Integer vulputate dignissim lacinia.',
     links: [

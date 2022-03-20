@@ -11,7 +11,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
   const emailRef = useRef(null);
-  const [role, setRole] = useState('employee');
+  const [role, setRole] = useState('EMPLOYEE');
   const notification = useNotification();
 
   const handleRoleChange = (event, value) => {
@@ -48,8 +48,8 @@ export const Login = () => {
               className={styles.tabs}
               onChange={handleRoleChange}
               aria-label="lab API tabs example">
-              <Tab label="Специалист" value="employee" />
-              <Tab label="Заказчик" value="employer" />
+              <Tab label="Специалист" value="EMPLOYEE" />
+              <Tab label="Заказчик" value="EMPLOYER" />
             </TabList>
           </Box>
         </TabContext>

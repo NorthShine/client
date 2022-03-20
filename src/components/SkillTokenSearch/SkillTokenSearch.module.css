@@ -1,23 +1,16 @@
-.root {
-  padding: 25px 20px;
-}
 .form {
   width: 100%;
-}
-.submit {
-  margin: 10px;
-}
-.button {
-  margin: 10px;
+  margin-top: 10px;
 }
 .input {
   padding-right: 10px;
 }
-.openForm {
+.search {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
 }
 .title {
   padding-top: 40px;
@@ -37,21 +30,26 @@
 }
 
 .userinfo_input {
-  margin: 10px;
+  margin: 10px 0;
 }
 
 .userinfo_wrapper {
   padding-top: 20px;
 }
 
-.save {
-  margin: 10px 0;
+.list_item {
+  padding: 0;
+}
+
+.icon {
+  fill: #8a87f6;
+}
+
+.skills_wrapper {
+  padding: 15px;
 }
 
 @media (max-width: 600px) {
-  .root {
-    height: calc(100% + 100px);
-  }
   .competences {
     flex-direction: column;
     border: 0.5px solid rgb(217, 217, 217);

@@ -4,124 +4,113 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  IconButton,
+  Container,
   Button,
-  SwipeableDrawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
+  Box,
   BottomNavigation,
   BottomNavigationAction,
-  Paper
+  Paper,
+  Tooltip,
+  IconButton,
+  Avatar
 } from '@mui/material';
-import {
-  Person,
-  FactCheck,
-  Settings,
-  Menu as MenuIcon,
-  ChevronLeft as ChevronLeftIcon
-} from '@mui/icons-material';
+import { Person, FactCheck, Settings, Search } from '@mui/icons-material';
 import styles from './Navbar.module.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width:600px)');
+  const user = useSelector(state => state.user.user);
   const [value, setValue] = useState(0);
-
-  const toggleSidebar = open => event => {
-    if (
-      event.type === 'keydown' &&
-      'key' in event &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-    setOpen(open);
-  };
 
   const menuItems = [
     {
       name: 'Профиль',
       icon: <Person />,
-      link: '/profile'
+      link: '/profile',
+      access: ['EMPLOYER', 'EMPLOYEE']
     },
     {
       name: 'Заявки',
       icon: <FactCheck />,
-      link: '/tokens'
+      link: '/tokens',
+      access: ['EMPLOYEE']
     },
     {
-      name: 'Настройки',
-      icon: <Settings />,
-      link: '/settings'
+      name: 'Поиск',
+      icon: <Search />,
+      link: '/search',
+      access: ['EMPLOYER']
     }
   ];
 
   return (
     <div className={styles.root}>
       {isMobile ? (
-        <Paper style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Paper
+          style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: '9999' }}
+          elevation={3}>
           <BottomNavigation
             showLabels
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);
             }}>
-            {menuItems.map(item => (
-              <BottomNavigationAction
-                key={item.name}
-                label={item.name}
-                icon={item.icon}
-                showLabel
-                component={NavLink}
-                to={item.link}
-              />
-            ))}
+            {menuItems
+              .filter(item => item.access.includes(user.role))
+              .map(item => (
+                <BottomNavigationAction
+                  key={item.name}
+                  label={item.name}
+                  icon={item.icon}
+                  showLabel
+                  component={NavLink}
+                  to={item.link}
+                />
+              ))}
           </BottomNavigation>
         </Paper>
       ) : (
         <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={styles.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleSidebar(true)}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={styles.title}>
-              App
-            </Typography>
-            <Button color="inherit">Logout</Button>
-          </Toolbar>
-          <SwipeableDrawer
-            anchor="left"
-            open={open}
-            onClose={toggleSidebar(false)}
-            onOpen={toggleSidebar(true)}
-            className={styles.sidebar}
-            classes={{
-              paper: styles.drawerPaper
-            }}>
-            <div className={styles.drawerHeader}>
-              <IconButton onClick={toggleSidebar(false)}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-            <List>
-              {menuItems.map(item => (
-                <ListItem button key={item.name} component={NavLink} to={item.link}>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.name} />
-                </ListItem>
-              ))}
-            </List>
-          </SwipeableDrawer>
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                SkillsCloud
+              </Typography>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                SkillsCloud
+              </Typography>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {menuItems
+                  .filter(item => item.access.includes(user.role))
+                  .map(item => (
+                    <Button
+                      component={NavLink}
+                      to={item.link}
+                      key={item.name}
+                      sx={{ my: 2, color: 'white', display: 'block' }}>
+                      {item.name}
+                    </Button>
+                  ))}
+              </Box>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={user.avatar} />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Toolbar>
+          </Container>
         </AppBar>
       )}
     </div>

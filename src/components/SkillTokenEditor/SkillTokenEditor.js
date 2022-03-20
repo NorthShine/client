@@ -9,7 +9,9 @@ import {
   MenuItem,
   IconButton,
   Tooltip,
-  useMediaQuery
+  useMediaQuery,
+  Autocomplete,
+  Chip
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,13 +21,13 @@ import {
   addCompetence,
   removeCompetence,
   updateSkillTokenName,
-  updateSkillTokenDescription
+  updateSkillTokenTags
 } from '../../store/reducers/skillToken/skillTokenReducer';
 import styles from './SkillTokenEditor.module.css';
 
 export const SkillTokenEditor = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const { competences, name, description } = useSelector(state => state.skillToken.token);
+  const { competences, name, tags } = useSelector(state => state.skillToken.token);
   const dispatch = useDispatch();
 
   const handleCompetencyNameChange = event => {
@@ -54,7 +56,7 @@ export const SkillTokenEditor = () => {
     <>
          <Container className={styles.competences}>
       <TextField
-        className={styles.competences2}
+        className={styles.name}
         label="Название скилл-токена"
         id={name}
         variant="outlined"
@@ -139,7 +141,7 @@ export const SkillTokenEditor = () => {
           </Container>
         );
       })}
-      <Grid container>
+      <Grid container className={styles.addCompetence_wrapper}>
         <Button
           variant="outlined"
           color="primary"
@@ -149,6 +151,24 @@ export const SkillTokenEditor = () => {
           Добавить компетенцию
         </Button>
       </Grid>
+      <Autocomplete
+        multiple
+        id="tags-filled"
+        freeSolo
+        options={[]}
+        value={tags}
+        onChange={(event, value) => {
+          dispatch(updateSkillTokenTags(value));
+        }}
+        renderTags={(value, getTagProps) => {
+          return value.map((option, index) => (
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+          ));
+        }}
+        renderInput={params => (
+          <TextField {...params} variant="outlined" label="Теги" placeholder="Добавьте теги" />
+        )}
+      />
     </>
   );
 };

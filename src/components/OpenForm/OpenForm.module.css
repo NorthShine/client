@@ -2,12 +2,6 @@
   width: 100%;
   margin-top: 10px;
 }
-.submit {
-  margin: 10px;
-}
-.button {
-  margin: 10px;
-}
 .input {
   padding-right: 10px;
 }
@@ -35,7 +29,7 @@
 }
 
 .userinfo_input {
-  margin: 10px;
+  margin: 10px 0;
 }
 
 .userinfo_wrapper {

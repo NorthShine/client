@@ -21,7 +21,7 @@ export const OpenForm = () => {
       const data = {
         username: usernameRef.current.value,
         email: emailRef.current.value,
-        role: 'employee',
+        role: 'EMPLOYEE',
         competences
       };
       console.log(data);
@@ -63,12 +63,7 @@ export const OpenForm = () => {
           />
         </Grid>
         <Grid container>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth={isMobile}
-            className={styles.button}>
+          <Button type="submit" variant="contained" color="primary" fullWidth={isMobile}>
             Отправить
           </Button>
         </Grid>
