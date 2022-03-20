@@ -34,7 +34,7 @@ export const Navbar = () => {
     {
       name: 'Отклики',
       icon: <FactCheck />,
-      link: '/requests',
+      link: '/notifications',
       access: ['EMPLOYER', 'EMPLOYEE']
     },
     {

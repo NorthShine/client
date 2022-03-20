@@ -14,7 +14,7 @@ import {
   ListItemText
 } from '@mui/material';
 import { Edit, ExpandMore, CheckCircle, Link as LinkIcon, Delete, Add } from '@mui/icons-material';
-import styles from './Profile.module.css';
+import styles from './UserNotifications.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -22,7 +22,7 @@ import { addUserSkillToken, removeUserSkillToken } from '../../store/reducers/us
 import { createSkilltoken } from '../../utils';
 import * as api from '../../api';
 
-export const Profile = () => {
+export const UserNotifications = () => {
   const user = useSelector(state => state.user.user);
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
