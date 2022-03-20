@@ -101,22 +101,6 @@ export const SkillTokenSearch = () => {
         <Grid item xs={8} md={9}>
           <Grid container spacing={2}>
             {skillTokens.map(token => {
-              token.competencies = [
-                {
-                  id: 'cdd94a90-cf95-473d-b326-616a4e0621ee',
-                  name: 'Python',
-                  level: {
-                    name: 'Junior'
-                  }
-                },
-                {
-                  id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
-                  name: 'Java',
-                  level: {
-                    name: 'Senior'
-                  }
-                }
-              ];
               return (
                 <Grid key={token.ext_id} item xs={12} md={6} lg={4}>
                   <Paper elevation={1}>

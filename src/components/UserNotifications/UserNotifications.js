@@ -21,12 +21,20 @@ import Box from '@mui/material/Box';
 import { addUserSkillToken, removeUserSkillToken } from '../../store/reducers/user/userSlice';
 import { createSkilltoken } from '../../utils';
 import * as api from '../../api';
+import { useEffect } from 'react';
 
 export const UserNotifications = () => {
   const user = useSelector(state => state.user.user);
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   api
+  //     .getNotifications()
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
+  // }, []);
 
   return (
     <Container className={styles.root} component="main" maxWidth="md">
