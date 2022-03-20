@@ -1,10 +1,7 @@
 import {
   Container,
   Typography,
-  Card,
   Stack,
-  Tooltip,
-  IconButton,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -22,6 +19,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { addUserSkillToken, removeUserSkillToken } from '../../store/reducers/user/userSlice';
+import { createSkilltoken } from '../../utils';
+import * as api from '../../api';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
@@ -29,8 +28,15 @@ export const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleAddSkillToken = () => {
-    dispatch(addUserSkillToken());
+  const handleAddSkillToken = async () => {
+    try {
+      const newToken = createSkilltoken();
+      const token = { ...newToken, ext_id: newToken.id, user_email: user.email };
+      await api.addSkillToken(token);
+      dispatch(addUserSkillToken(token));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleRemoveSkillToken = id => {
@@ -49,7 +55,7 @@ export const Profile = () => {
         <Container className={styles.info}>
           <Box className={styles.bio_wrapper}>
             <Typography className={styles.bio} variant="p" sx={{ marginBottom: '2rem' }}>
-              {user.description}
+              {user.about}
             </Typography>
           </Box>
           {user.links.map(link => (
@@ -83,7 +89,7 @@ export const Profile = () => {
               <AccordionDetails>
                 <Stack direction="column" className={styles.list}>
                   <List>
-                    {token.competences.map(item => (
+                    {token.competencies.map(item => (
                       <ListItem key={item.id} disablePadding>
                         <ListItemButton>
                           <ListItemIcon>

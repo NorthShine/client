@@ -1,6 +1,6 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import { getUserAction } from './actionCreators';
-import DefaultAvatar from '../../../assets/images/avatar.png';
+import DefaultAvatar from '../../../assets/images/some-guy.jpg';
 import { createUserLink, createSkilltoken } from '../../../utils';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
     name: 'John Doe',
     avatar: DefaultAvatar,
     role: 'EMPLOYER',
-    description:
+    about:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae nibh accumsan, convallis turpis a, sodales odio. Ut vel arcu a ante finibus ultrices. Cras ut ligula semper, commodo erat quis, posuere mi. Aenean ut suscipit mi, nec imperdiet erat. Integer vulputate dignissim lacinia.',
     links: [
       {
@@ -25,7 +25,7 @@ const initialState = {
         name: 'Designer',
         id: '0',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [
+        competencies: [
           {
             id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
             name: 'Figma',
@@ -46,7 +46,7 @@ const initialState = {
         name: 'Writer',
         id: '1',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [
+        competencies: [
           {
             id: '3b302f93-b7e6-4e33-8abe-f638a002a5c8',
             name: 'HTML',
@@ -67,7 +67,7 @@ const initialState = {
         name: 'Developer',
         id: '2',
         tags: ['HTML', 'CSS', 'Python'],
-        competences: [
+        competencies: [
           {
             id: 'cdd94a90-cf95-473d-b326-616a4e0621ee',
             name: 'Python',
@@ -108,8 +108,8 @@ export const userSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(addUserSkillToken, state => {
-      state.user.skilltokens.push(createSkilltoken());
+    builder.addCase(addUserSkillToken, (state, action) => {
+      state.user.skilltokens.push(action.payload);
     });
     builder.addCase(removeUserSkillToken, (state, action) => {
       const { id } = action.payload;
@@ -121,7 +121,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(updateUserDescription, (state, action) => {
       const { value } = action.payload;
-      state.user.description = value;
+      state.user.about = value;
     });
     builder.addCase(removeUserLink, (state, action) => {
       const { id } = action.payload;
@@ -153,7 +153,7 @@ export const userSlice = createSlice({
       action.payload.avatar = DefaultAvatar;
       action.payload.links = [];
       action.payload.name = 'John Doe';
-      action.payload.description = 'My placeholder description';
+      action.payload.about = 'Hello! I am a web designer';
 
       state.user = action.payload;
     });

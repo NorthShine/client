@@ -46,6 +46,8 @@
   border-radius: 50%;
   overflow: hidden;
   height: 250px;
+  object-fit: cover;
+  width: 250px;
 }
 .selected__speciality {
   padding: 10px 15px;

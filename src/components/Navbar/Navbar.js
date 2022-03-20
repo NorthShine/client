@@ -32,10 +32,10 @@ export const Navbar = () => {
       access: ['EMPLOYER', 'EMPLOYEE']
     },
     {
-      name: 'Заявки',
+      name: 'Отклики',
       icon: <FactCheck />,
-      link: '/tokens',
-      access: ['EMPLOYEE']
+      link: '/requests',
+      access: ['EMPLOYER', 'EMPLOYEE']
     },
     {
       name: 'Поиск',

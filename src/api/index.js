@@ -13,12 +13,8 @@ export const setCompetenceLevel = data => API.post('competency/level', data);
 export const addCompetence = data => API.post('competency', data); // { name, level: {name}, user: {email}}
 export const removeCompetence = data => API.delete('competency', data); // { id }
 export const refresh = () => API.get('api/token/refresh/');
-export const fetchSkillTokens = ({ competence }) =>
-  API.get(`search`, {
-    params: {
-      q: competence
-    }
-  });
+export const addSkillToken = data => API.post('skilltoken/', data); // { name, level: {name}, user: {email}}
+export const fetchSkillTokens = ({ name }) => API.get(`search?q=${name}`);
 
 export const ApiInterceptors = store => {
   API.interceptors.request.use(async req => {

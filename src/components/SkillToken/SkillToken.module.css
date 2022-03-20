@@ -29,7 +29,7 @@
 .select {
   width: 100%;
 }
-.competences {
+.competencies {
   padding: 20px 10px;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@
   .root {
     height: calc(100% + 100px);
   }
-  .competences {
+  .competencies {
     flex-direction: column;
     border: 0.5px solid rgb(217, 217, 217);
     border-radius: 10px;

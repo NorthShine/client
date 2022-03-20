@@ -13,7 +13,7 @@
 .select {
   width: 100%;
 }
-.competences {
+.competencies {
   padding: 20px 0;
   display: flex;
   align-items: center;
@@ -24,13 +24,12 @@
 }
 
 @media (max-width: 600px) {
-  .competences {
+  .competencies {
     flex-direction: column;
     border: 0.5px solid rgb(217, 217, 217);
     border-radius: 10px;
     margin: 15px 0;
     padding: 15px 10px;
-    
   }
   .input {
     margin-bottom: 10px;
@@ -45,7 +44,7 @@
     margin-top: 10px;
     margin-left: 0 !important;
     width: 100% !important;
-    }
+  }
 }
 .work__experience {
   width: 170px;

@@ -25,10 +25,13 @@ import {
 } from '../../store/reducers/skillToken/skillTokenReducer';
 import styles from './FilterForm.module.css';
 
-export const FilterForm = () => {
+export const FilterForm = ({ name, setName, tags }) => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const { competences, name, tags } = useSelector(state => state.skillToken.token);
   const dispatch = useDispatch();
+
+  const handleChange = event => {
+    setName(event.target.value);
+  };
 
   return (
     <>
@@ -37,6 +40,8 @@ export const FilterForm = () => {
         label="Название скилл-токена"
         variant="outlined"
         type="text"
+        value={name}
+        onChange={handleChange}
         required
         fullWidth
         autoFocus

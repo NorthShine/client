@@ -74,10 +74,10 @@ export const ProfileEditor = () => {
             className={styles.userinfo_input}
             onChange={handleUpdateDescription}
             label="О себе"
-            id="description"
+            id="about"
             variant="outlined"
             type="text"
-            value={user.description}
+            value={user.about}
             required
             fullWidth
             autoFocus
@@ -85,7 +85,7 @@ export const ProfileEditor = () => {
           />
           <Typography className={styles.typography__link} variant="h6">Ссылки</Typography>
           {user.links.map(item => (
-            <Container key={item.id} className={styles.competences}>
+            <Container key={item.id} className={styles.competencies}>
               <TextField
                 className={styles.input}
                 label="Название компетенции"

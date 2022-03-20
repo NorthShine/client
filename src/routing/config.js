@@ -9,6 +9,7 @@ import { Profile } from '../components/Profile/Profile';
 import { ProfileEditor } from '../components/ProfileEditor/ProfileEditor';
 import { SkillToken } from '../components/SkillToken/SkillToken';
 import { SkillTokenSearch } from '../components/SkillTokenSearch/SkillTokenSearch';
+import { Requests } from '../components/Requests/Requests';
 import { EmployerElement } from './EmployerElement';
 
 export const routes = [
@@ -35,6 +36,7 @@ export const routes = [
             children: [
               { path: '/', element: <Home /> },
               { path: '/token/:tokenId', element: <SkillToken /> },
+              { path: '/requests', element: <Requests /> },
               {
                 path: '/search',
                 element: <EmployerElement element={<SkillTokenSearch />} />

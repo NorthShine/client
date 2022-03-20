@@ -24,10 +24,12 @@ import {
   updateSkillTokenTags
 } from '../../store/reducers/skillToken/skillTokenReducer';
 import styles from './SkillTokenEditor.module.css';
+import * as api from '../../api';
+import { createCompetence } from '../../utils';
 
 export const SkillTokenEditor = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const { competences, name, tags } = useSelector(state => state.skillToken.token);
+  const { competencies, name, tags } = useSelector(state => state.skillToken.token);
   const dispatch = useDispatch();
 
   const handleCompetenceNameChange = event => {
@@ -40,8 +42,14 @@ export const SkillTokenEditor = () => {
     dispatch(setCompetenceLevel({ name, value }));
   };
 
-  const handleAddCompetence = () => {
-    dispatch(addCompetence());
+  const handleAddCompetence = async () => {
+    try {
+      const competence = createCompetence();
+      // await api.addCompetence(competence);
+      dispatch(addCompetence(competence));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleRemoveCompetence = id => {
@@ -54,7 +62,7 @@ export const SkillTokenEditor = () => {
 
   return (
     <>
-      <Container className={styles.competences}>
+      <Container className={styles.competencies}>
         <TextField
           className={styles.name}
           label="Название скилл-токена"
@@ -88,9 +96,9 @@ export const SkillTokenEditor = () => {
           </FormControl>
         </Container>
       </Container>
-      {competences.map(item => {
+      {competencies.map(item => {
         return (
-          <Container key={item.id} className={styles.competences}>
+          <Container key={item.id} className={styles.competencies}>
             <TextField
               className={styles.input}
               label="Название компетенции"

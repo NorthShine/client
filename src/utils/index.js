@@ -17,5 +17,5 @@ export const createSkilltoken = () => ({
   name: 'Placeholder',
   id: uuid(),
   tags: [],
-  competences: []
+  competencies: []
 });

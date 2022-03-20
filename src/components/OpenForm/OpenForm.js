@@ -13,7 +13,7 @@ export const OpenForm = () => {
   const notification = useNotification();
   const isMobile = useMediaQuery('(max-width:600px)');
   const usernameRef = useRef(null);
-  const { competences } = useSelector(state => state.skillToken.token);
+  const { competencies } = useSelector(state => state.skillToken.token);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -22,7 +22,7 @@ export const OpenForm = () => {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         role: 'EMPLOYEE',
-        competences
+        competencies
       };
       console.log(data);
       await api.register(data);

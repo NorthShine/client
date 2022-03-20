@@ -27,7 +27,7 @@
 .select {
   width: 100%;
 }
-.competences {
+.competencies {
   padding: 20px 10px;
   display: flex;
   align-items: center;
@@ -43,7 +43,7 @@
 }
 
 @media (max-width: 600px) {
-  .competences {
+  .competencies {
     flex-direction: column;
     border: 0.5px solid rgb(217, 217, 217);
     border-radius: 10px;

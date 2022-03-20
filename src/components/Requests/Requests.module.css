@@ -1,0 +1,32 @@
+.form {
+  width: 100%;
+  margin-top: 10px;
+}
+.submit {
+  margin: 10px;
+}
+.input {
+  margin: 30px 10px 20px;
+}
+.loginBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border: 0.5px solid rgb(243, 243, 243);
+  border-radius: 15px;
+  padding:35px;
+  transform: translateY(50%);
+}
+div[class*='MuiTabs-flexContainer'] {
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .loginBox {
+    box-shadow: none;
+    border: none;
+  }
+}
