@@ -1,7 +1,7 @@
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import { getUserAction } from './actionCreators';
 import DefaultAvatar from '../../../assets/images/avatar.png';
-import { createUserLink } from '../../../utils';
+import { createUserLink, createSkilltoken } from '../../../utils';
 
 const initialState = {
   user: {
@@ -20,7 +20,7 @@ const initialState = {
         value: 'https://gitlab.com'
       }
     ],
-    skillTokens: [
+    skilltokens: [
       {
         name: 'Designer',
         id: '0',
@@ -96,6 +96,8 @@ export const addUserLink = createAction('user/addUserLink');
 export const removeUserLink = createAction('user/removeUserLink');
 export const updateUserName = createAction('user/updateUserName');
 export const updateUserDescription = createAction('user/updateUserDescription');
+export const addUserSkillToken = createAction('user/addUserSkillToken');
+export const removeUserSkillToken = createAction('user/removeUserSkillToken');
 
 export const userSlice = createSlice({
   name: 'user',
@@ -106,6 +108,13 @@ export const userSlice = createSlice({
     }
   },
   extraReducers: builder => {
+    builder.addCase(addUserSkillToken, state => {
+      state.user.skilltokens.push(createSkilltoken());
+    });
+    builder.addCase(removeUserSkillToken, (state, action) => {
+      const { id } = action.payload;
+      state.user.skilltokens = state.user.skilltokens.filter(token => token.id !== id);
+    });
     builder.addCase(updateUserName, (state, action) => {
       const { value } = action.payload;
       state.user.name = value;
@@ -132,13 +141,19 @@ export const userSlice = createSlice({
     });
     builder.addCase(updateUserSkillToken, (state, action) => {
       const { id, token } = action.payload;
-      state.user.skillTokens = state.user.skillTokens.map(item => {
+      state.user.skilltokens = state.user.skilltokens.map(item => {
         return item.id === id ? token : item;
       });
     });
     builder.addCase(getUserAction.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
+
+      // hardcoded
+      action.payload.avatar = DefaultAvatar;
+      action.payload.links = [];
+      action.payload.description = 'My placeholder description';
+
       state.user = action.payload;
     });
     builder.addCase(getUserAction.pending, state => {

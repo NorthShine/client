@@ -8,7 +8,7 @@
   padding-right: 0;
   padding-left: 0;
 }
-.edit {
+.actions {
   margin-left: auto;
 }
 .skillTokens {
@@ -28,9 +28,9 @@
   }
 }
 
-@media (max-width: 350px) {
-  .aboutme__card {
-    padding: 0 !important;
+@media (max-width: 600px) {
+  .actions {
+    margin-left: 0;
   }
 }
 

@@ -8,16 +8,20 @@ export const API = axios.create({
 
 export const fetchUsers = () => API.get('users');
 export const getUser = email => API.get(`profiles/${email}`);
-export const register = data => API.post('api/token/', data);
+export const register = data => API.post('register/', data);
 export const setCompetenceLevel = data => API.post('competency/level', data);
 export const addCompetence = data => API.post('competency', data); // { name, level: {name}, user: {email}}
 export const removeCompetence = data => API.delete('competency', data); // { id }
 export const refresh = () => API.get('api/token/refresh/');
-export const fetchSkillTokens = () => API.get('skilltokens/');
+export const fetchSkillTokens = ({ competence }) =>
+  API.get(`search`, {
+    params: {
+      q: competence
+    }
+  });
 
 export const ApiInterceptors = store => {
   API.interceptors.request.use(async req => {
-    const { method } = req;
     const { accessToken } = store.getState().auth;
     if (accessToken) req.headers.authorization = `Bearer ${accessToken}`;
     return req;

@@ -3,9 +3,9 @@ import { getUser } from '../../../api';
 
 export const getUserAction = createAsyncThunk(
   'user/getUserAction',
-  async (_, { rejectWithValue }) => {
+  async ({ email }, { rejectWithValue }) => {
     try {
-      const response = await getUser();
+      const response = await getUser(email);
       return response.data;
     } catch (err) {
       const response = err.response;

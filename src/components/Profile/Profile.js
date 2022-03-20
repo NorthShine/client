@@ -16,16 +16,26 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material';
-import { Edit, ExpandMore, CheckCircle, Link as LinkIcon } from '@mui/icons-material';
+import { Edit, ExpandMore, CheckCircle, Link as LinkIcon, Delete, Add } from '@mui/icons-material';
 import styles from './Profile.module.css';
-import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import { addUserSkillToken, removeUserSkillToken } from '../../store/reducers/user/userSlice';
 
 export const Profile = () => {
   const user = useSelector(state => state.user.user);
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleAddSkillToken = () => {
+    dispatch(addUserSkillToken());
+  };
+
+  const handleRemoveSkillToken = id => {
+    dispatch(removeUserSkillToken(id));
+  };
 
   return (
     <Container className={styles.root} component="main" maxWidth="md">
@@ -50,12 +60,19 @@ export const Profile = () => {
               </Box>
             </a>
           ))}
+          <Button
+            color="primary"
+            variant="outlined"
+            fullWidth={isMobile}
+            onClick={() => navigate('/profile/edit')}>
+            Редактировать профиль
+          </Button>
         </Container>
         <Container className={styles.skillTokens}>
           <Typography className={styles.skillToken_title} variant="h6">
             Скилл-токены:
           </Typography>
-          {user.skillTokens.map(token => (
+          {user.skilltokens.map(token => (
             <Accordion className={`${styles.min_height} ${styles.accordion}`} key={token.id}>
               <AccordionSummary
                 expandIcon={<ExpandMore />}
@@ -77,19 +94,39 @@ export const Profile = () => {
                       </ListItem>
                     ))}
                   </List>
-                  <Button
-                    className={styles.edit}
-                    color="primary"
-                    variant="contained"
-                    startIcon={<Edit />}
-                    fullWidth={isMobile}
-                    onClick={() => navigate(`/token/${token.id}`)}>
-                    Редактировать
-                  </Button>
+                  <Stack
+                    direction={isMobile ? 'column' : 'row'}
+                    className={styles.actions}
+                    spacing={2}>
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      startIcon={<Edit />}
+                      fullWidth={isMobile}
+                      onClick={() => navigate(`/token/${token.id}`)}>
+                      Редактировать
+                    </Button>
+                    <Button
+                      color="secondary"
+                      variant="outlined"
+                      startIcon={<Delete />}
+                      fullWidth={isMobile}
+                      onClick={() => handleRemoveSkillToken(token.id)}>
+                      Удалить
+                    </Button>
+                  </Stack>
                 </Stack>
               </AccordionDetails>
             </Accordion>
           ))}
+          <Button
+            color="primary"
+            variant="outlined"
+            startIcon={<Add />}
+            fullWidth={isMobile}
+            onClick={handleAddSkillToken}>
+            Добавить
+          </Button>
         </Container>
       </Container>
     </Container>

@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { NotificationProvider } from './providers/NotificationProvider';
 import { LoaderProvider } from './providers/LoaderProvider';
 import combineProviders from './utils/combine-providers';
-// import { AuthProvider } from './providers/AuthProvider';
+import { AuthProvider } from './providers/AuthProvider';
 import { Theme } from './Theme';
 import { store } from './store';
 import { Provider as StateProvider } from 'react-redux';
@@ -18,7 +18,7 @@ ApiInterceptors(store);
 
 const App = () => {
   const Providers = combineProviders([
-    // AuthProvider,
+    AuthProvider,
     NotificationProvider,
     [StateProvider, { store }],
     LoaderProvider,

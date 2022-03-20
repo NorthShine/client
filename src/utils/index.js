@@ -12,3 +12,10 @@ export const createUserLink = () => ({
   id: uuid(),
   value: ''
 });
+
+export const createSkilltoken = () => ({
+  name: 'Placeholder',
+  id: uuid(),
+  tags: [],
+  competences: []
+});

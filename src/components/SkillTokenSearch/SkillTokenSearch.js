@@ -25,36 +25,36 @@ export const SkillTokenSearch = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
   const [competence, setCompetence] = useState('');
   const [tags, setTags] = useState([]);
-  const [skillTokens, setSkillTokens] = useState(
-    Array.from({ length: 20 }, () => ({
-      name: 'Designer',
-      id: '0',
-      tags: ['HTML', 'CSS', 'Python'],
-      competences: [
-        {
-          id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
-          name: 'Figma',
-          level: {
-            name: 'Junior'
-          }
-        },
-        {
-          id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
-          name: 'HTML',
-          level: {
-            name: 'Middle'
-          }
-        },
-        {
-          id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
-          name: 'CSS',
-          level: {
-            name: 'Senior'
-          }
-        }
-      ]
-    }))
-  );
+  const [skillTokens, setSkillTokens] = useState([]);
+
+  // Array.from({ length: 20 }, () => ({
+  //   name: 'Designer',
+  //   id: '0',
+  //   tags: ['HTML', 'CSS', 'Python'],
+  //   competences: [
+  //     {
+  //       id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
+  //       name: 'Figma',
+  //       level: {
+  //         name: 'Junior'
+  //       }
+  //     },
+  //     {
+  //       id: '6989724c-47a5-499a-aa61-2b6ec8c24af8',
+  //       name: 'HTML',
+  //       level: {
+  //         name: 'Middle'
+  //       }
+  //     },
+  //     {
+  //       id: '4148d6fd-ac15-4251-907e-d05d21f5e488',
+  //       name: 'CSS',
+  //       level: {
+  //         name: 'Senior'
+  //       }
+  //     }
+  //   ]
+  // }))
 
   useEffect(() => {
     api
@@ -62,7 +62,10 @@ export const SkillTokenSearch = () => {
         tags,
         competence
       })
-      .then(setSkillTokens)
+      .then(res => {
+        console.log(res);
+        setSkillTokens(res);
+      })
       .catch(err => notification.error(err.message));
   }, [competence, tags]);
   const handleSubmit = async e => {

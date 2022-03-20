@@ -6,13 +6,16 @@ import { useNotification } from '../../hooks/useNotification';
 import { useAuth } from '../../hooks/useAuth';
 import * as api from '../../api';
 import styles from './Login.module.css';
+import { useDispatch } from 'react-redux';
+import { getUserAction } from '../../store/reducers/user/actionCreators';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { isAuth } = useAuth();
+  const { setAuth, isAuth } = useAuth();
   const emailRef = useRef(null);
   const [role, setRole] = useState('EMPLOYEE');
   const notification = useNotification();
+  const dispatch = useDispatch();
 
   const handleRoleChange = (event, value) => {
     setRole(value);
@@ -26,11 +29,21 @@ export const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const data = {
-        email: emailRef.current.value,
-        role
-      };
-      await api.register(data);
+      // const data = {
+      //   email: emailRef.current.value,
+      //   role
+      // };
+      // await api.register(data);
+      dispatch(getUserAction({ email: emailRef.current.value }))
+        .unwrap()
+        .then(() => {
+          setAuth(true);
+          navigate('/profile');
+        })
+        .catch(err => {
+          notification.error(err.message);
+          setAuth(false);
+        });
     } catch (err) {
       notification.warning(err.message);
     }
